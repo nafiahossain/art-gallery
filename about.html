@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | ArtSpace</title>
+    <link rel="shortcut icon" type="image" href="images/title.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Joan&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Joan', serif;
+        }
+
+        .topnav {
+            position: relative;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        .topnav a {
+            float: left;
+            color: black;
+            text-align: center;
+            margin: 25px 20px;
+            padding: 10px 10px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        .topnav a:hover {
+            background-color: #E9D5DA;
+            color: black;
+        }
+
+        .topnav a.active {
+            color: white;
+        }
+
+        .topnav-centered img {
+            float: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .topnav-right {
+            float: right;
+        }
+
+        .section {
+            width: 100%;
+        }
+
+        .section .container {
+            width: 80%;
+            display: block;
+            margin: 0px auto;
+            padding: 30px 0px;
+        }
+
+        .section .title {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section .title h1 {
+            font-size: 30px;
+            font-weight: 500;
+        }
+
+        .section .title h1::after {
+            content: "";
+            height: 2px;
+            width: 100px;
+            background-color: black;
+            display: block;
+            margin: auto;
+        }
+
+        .content {
+            float: left;
+            width: 55%;
+        }
+
+        .image-section {
+            float: right;
+            width: 40%;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: aut0;
+        }
+
+        .container .article h3 {
+            font-size: 22px;
+        }
+
+        .container .article p {
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .container .article .button {
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+
+        .container .article .button a {
+            text-decoration: none;
+            padding: 8px 25px;
+            background-color: #827397;
+            border-radius: 10px;
+            color: black;
+            font-size: 18px;
+            letter-spacing: 1.5px;
+        }
+
+        .container .article .button a:hover {
+            color: black;
+            background-color: #E9D5DA;
+            transition: 1s ease;
+        }
+        /*
+        .container .media {
+            width: 100%;
+            clear: both;
+            margin: 50px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .container .media i {
+            color: #111;
+            font-size: 22px;
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;
+            line-height: 45px;
+            text-align: center;
+            margin: 0px 5px;
+        }
+
+        .container .media i:hover {
+            color: #111;
+            transform: scale(1.25);
+        }
+        */
+
+        .wrapper {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .wrapper h1 {
+            font-size: 30px;
+            font-weight: 500;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .wrapper h1::after {
+            content: "";
+            height: 2px;
+            width: 100px;
+            background-color: black;
+            display: block;
+            margin: auto;
+        }
+
+        .team {
+            display: flex;
+            justify-content: center;
+            width: auto;
+            text-align: center;
+            flex-wrap: wrap;
+        }
+
+        .team .team_member {
+            background: #fff;
+            margin: 5px;
+            margin-bottom: 50px;
+            width: 300px;
+            padding: 20px;
+            line-height: 20px;
+            color: #000000;
+            position: relative;
+        }
+
+        .team .team_member h3 {
+            color: black;
+            font-size: 20px;
+            margin-top: 50px;
+        }
+
+        .team .team_member p.role {
+            color: rgb(150, 150, 150);
+            margin: 12px 0;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .team .team_member .team_img {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #fff;
+        }
+
+        .team .team_member .team_img img {
+            width: 100px;
+            height: 100px;
+            padding: 5px;
+        }
+
+        .media {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .media a {
+            position: relative;
+            color: #111;
+            font-size: 25px;
+        }
+
+        .media a:not(:last-child) {
+            margin-right: 60px;
+        }
+
+        .media a:hover {
+            transform: scale(1.25);
+        }
+
+        /* Responsive navigation menu (for mobile devices) */
+        @media screen and (max-width: 768px) {
+
+            .topnav a,
+            .topnav-right {
+                float: none;
+                display: block;
+            }
+
+            .topnav-centered a {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+            }
+
+            .section .container {
+                width: 80%;
+                display: block;
+                margin: auto;
+            }
+
+            .content {
+                float: none;
+                width: 100%;
+                display: block;
+                margin: auto;
+            }
+
+            .image-section {
+                float: none;
+                width: 100%;
+                margin-top: 50px;
+            }
+
+            .image-section img {
+                width: 100%;
+                height: auto;
+                display: block;
+                margin: auto;
+            }
+
+            .container .title h1 {
+                text-align: center;
+                font-size: 30px;
+            }
+
+            .container .article .button {
+                text-align: center;
+            }
+
+            .container .article .button a {
+                padding: 6px 15px;
+                font-size: 16px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Top navigation -->
+    <div class="topnav">
+
+        <!-- Centered link -->
+        <div class="topnav-centered">
+            <img class="logo" src="images/logoo.png" alt="ArtSpace">
+        </div>
+
+        <!-- Left-aligned links (default) -->
+        <a style="margin-left: 350px;" href="#news">News</a>
+        <a href="#contact">Contact</a>
+
+        <!-- Right-aligned links -->
+        <div class="topnav-right">
+            <a href="#search">Search</a>
+            <a style="margin-right: 350px;" href="#about">About</a>
+        </div>
+
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="title">
+                <h1>About Us</h1>
+            </div>
+            <div class="content">
+                <div class="article">
+                    <h3>Lorem ipsum dolor sit amet consectetur, adipisicing elit. In, eius.</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione, mollitia modi nam id officia
+                        unde dolores debitis quae sequi molestiae enim, ullam sint nesciunt vitae fuga ad veritatis
+                        corporis inventore?</p>
+                    <div class="button">
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="image-section">
+                <img src="images/David Atkins Artist _ Latest Original Oil Paintings.jpg" alt="">
+            </div>
+            <div>
+                <p style="color: white;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos molestiae vel ducimus, ex voluptatum
+                    reprehenderit aperiam, veritatis similique, fugiat libero officia? Ex, explicabo cum. Consectetur
+                    deleniti mollitia vel quia dignissimos.</p>
+                <p style="color: white;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem accusantium omnis, quae
+                    voluptatum harum ipsa modi, hic iusto veniam fugit, eum tempora? Magnam a maiores aspernatur harum
+                    soluta reiciendis nulla.</p>
+                <p style="color: white;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae veritatis eius voluptate, esse
+                    animi rerum magni aliquid. Nostrum minima voluptate dignissimos provident dolores fugiat, sit,
+                    quidem debitis delectus, deserunt ex!</p>
+                <p style="color: white;">Lorem ipsum dolor sit amet consectetur adipisicing </p>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <h1>Our Team</h1>
+            <div class="team">
+                <div class="team_member">
+                    <div class="team_img">
+                        <img src="images/1.jpg" alt="Team_image">
+                    </div>
+                    <h3>Paul Doe</h3>
+                    <p class="role">UI developer</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quaerat tempora, voluptatum quas
+                        facere
+                        dolorum aut cumque nihil nulla harum nemo distinctio quam blanditiis dignissimos.</p>
+                </div>
+                <div class="team_member">
+                    <div class="team_img">
+                        <img src="images/1.jpg" alt="Team_image">
+                    </div>
+                    <h3>Rosie Meg</h3>
+                    <p class="role">Tester</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quaerat tempora, voluptatum quas
+                        facere
+                        dolorum aut cumque nihil nulla harum nemo distinctio quam blanditiis dignissimos.</p>
+                </div>
+                <div class="team_member">
+                    <div class="team_img">
+                        <img src="images/1.jpg" alt="Team_image">
+                    </div>
+                    <h3>Alex Wood</h3>
+                    <p class="role">Support Lead</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quaerat tempora, voluptatum quas
+                        facere
+                        dolorum aut cumque nihil nulla harum nemo distinctio quam blanditiis dignissimos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="media">
+            <a href="https://www.facebook.com/"> <i class="fa-brands fa-facebook-f"></i> </a>
+            <a href="https://www.instagram.com/"> <i class="fa-brands fa-instagram-square"></i> </a>
+            <a href="https://twitter.com/"> <i class="fa-brands fa-twitter"></i> </a>
+        </div>
+    </div>
+
+</body>
+</html>
