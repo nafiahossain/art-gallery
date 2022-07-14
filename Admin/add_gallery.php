@@ -3,6 +3,73 @@
 include 'connection.php';
 include 'security.php';
 
+if(isset($_POST['add_admin']))
+{
+    $adminname = $_POST['adminname'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $password = $_POST['password'];
+
+    $query = "INSERT INTO `admin`(`a_name`, `email`, `phone`, `password`) 
+              VALUES ('$adminname','$email','$phone','$password');";
+    $res = mysqli_query($connect, $query);
+
+    if($res)
+    {
+        $_SESSION['success'] = "New Admin member Added To the Database!";
+        header('Location: admin.php');
+    }
+    else
+    {
+        $_SESSION['status'] = "Unable To Add New Admin member To the Database!!";
+        header('Location: admin.php');
+    }
+
+}
+
+if(isset($_POST['edit_admin']))
+{
+    $editid = $_POST['edit_id'];
+    $editadminname = $_POST['adminname'];
+    $editemail = $_POST['email'];
+    $editphone = $_POST['phone'];
+    $editpassword = $_POST['password'];
+
+    $query = "UPDATE `admin` SET `a_name`='$editadminname',`email`='$editemail',
+             `phone`='$editphone',`password`='$editpassword' WHERE `a_id`='$editid';";
+    $res = mysqli_query($connect, $query);
+
+    if($res)
+    {
+        $_SESSION['success'] = "Admin Information Updated To the Database!";
+        header('Location: admin.php');
+    }
+    else
+    {
+        $_SESSION['status'] = "Unable To Update Admin Information To the Database!!";
+        header('Location: admin.php');
+    }
+
+}
+
+if(isset($_POST['delete_admin']))
+{
+    $dltid = $_POST['delete_id'];
+
+    $query = "DELETE FROM `admin` WHERE `a_id`='$dltid';";
+    $res = mysqli_query($connect, $query);
+    
+    if($res)
+    {
+        $_SESSION['success'] = "Admin Information Deleted From the Database!";
+        header('Location: admin.php');
+    }
+    else
+    {
+        $_SESSION['status'] = "Unable To Delete Admin Information From the Database!!";
+        header('Location: admin.php');
+    }
+}
 
 if(isset($_POST['add_gallery']))
 {
@@ -305,6 +372,25 @@ if(isset($_POST['delete_artwork']))
     {
         $_SESSION['status'] = "Unable To Delete Art Information From the Database!!";
         header('Location: admin_artworks.php');
+    }
+}
+
+if(isset($_POST['delete_user']))
+{
+    $dltid = $_POST['delete_id'];
+
+    $query = "DELETE FROM `users` WHERE `u_id`='$dltid';";
+    $res = mysqli_query($connect, $query);
+    
+    if($res)
+    {
+        $_SESSION['success'] = "User Information Deleted From the Database!";
+        header('Location: admin_users.php');
+    }
+    else
+    {
+        $_SESSION['status'] = "Unable To Delete User Information From the Database!!";
+        header('Location: admin_users.php');
     }
 }
 

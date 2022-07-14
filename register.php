@@ -4,49 +4,38 @@ include('admin/security.php');
 error_reporting(0);
 
 
-if (isset($_POST['submit']))
-{
+if (isset($_POST['submit'])) {
     $fullname = $_POST['fullname'];
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $bio = $_POST['bio'];
+    $phone = $_POST['phone'];
     $password = md5($_POST['password']);
     $confpass = md5($_POST['confpass']);
 
-    if ($password == $confpass)
-    {
-        $sql = "SELECT * FROM `artist` WHERE email = '$email' or username = '$username';";
+    if ($password == $confpass) {
+        $sql = "SELECT * FROM `users` WHERE email = '$email' or username = '$username';";
         $result = mysqli_query($connect, $sql);
         $resultcheck = mysqli_num_rows($result);
-        if(!$resultcheck > 0)
-        {
-            $sql = "INSERT INTO `artist` (`artist`, `username`, `email`, `bio`, `password`) VALUES ('$fullname',
-                    '$username','$email','$bio','$password');";
+        if (!$resultcheck > 0) {
+            $sql = "INSERT INTO `users` (`fullname`, `username`, `email`, `phone`, `password`) VALUES ('$fullname',
+                    '$username','$email','$phone','$password');";
             $result = mysqli_query($connect, $sql);
-            if ($result)
-            {
+            if ($result) {
                 echo "<script>alert('New User created.')</script>";
                 $fullname = "";
                 $username = "";
                 $email = "";
-                $bio = "";
+                $phone = "";
                 $_POST['password'] = "";
                 $_POST['confpass'] = "";
                 header("location: login.php");
-            }
-            else
-            {
+            } else {
                 echo "<script>alert('Something went wrong.')</script>";
             }
-        }
-        else
-        {
+        } else {
             echo "<script>alert('Email or User Name already exists.')</script>";
         }
-        
-    }
-    else
-    {
+    } else {
         echo "<script>alert('Password not matched.')</script>";
     }
 }
@@ -64,7 +53,7 @@ if (isset($_POST['submit']))
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Register | Admin</title>
+    <title>Register | ArtSapce</title>
     <link rel="shortcut icon" type="image" href="images/t2.png">
 
     <!-- Custom fonts for this template-->
@@ -111,7 +100,7 @@ if (isset($_POST['submit']))
                                     <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" value="<?php echo $email; ?>" placeholder="Mailing Address" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="bio" class="form-control form-control-user" id="exampleFirstName" value="<?php echo $bio; ?>" placeholder="Add Your Bio" required>
+                                    <input type="text" name="phone" class="form-control form-control-user" id="exampleFirstName" value="<?php echo $phone; ?>" placeholder="Contact Number" required>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -121,7 +110,7 @@ if (isset($_POST['submit']))
                                         <input type="password" name="confpass" class="form-control form-control-user" id="exampleRepeatPassword" value="<?php echo $_POST['confpass']; ?>" placeholder="Repeat Password" required>
                                     </div>
                                 </div>
-                                
+
                                 <input type="submit" name="submit" class="btn btn-dark btn-user btn-block" value="Create Account">
 
                             </form>

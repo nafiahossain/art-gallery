@@ -8,7 +8,7 @@ if (isset($_POST["submit"])) {
     $email = $_POST['email'];
     $password = md5($_POST['password']);
 
-    $sql = "SELECT * FROM `artist` WHERE username = '$username' AND email = '$email' AND password = '$password';";
+    $sql = "SELECT * FROM `users` WHERE username = '$username' AND email = '$email' AND password = '$password';";
     $result = mysqli_query($connect, $sql);
     $resultcheck = mysqli_num_rows($result);
     if ($resultcheck > 0) {
@@ -32,8 +32,8 @@ if (isset($_POST["submit"])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Login</title>
-    <link rel="shortcut icon" type="image" href="img/t2.png">
+    <title>Login | ArtSpace</title>
+    <link rel="shortcut icon" type="image" href="images/t2.png">
 
     <!-- Custom fonts for this template-->
     <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -69,7 +69,7 @@ if (isset($_POST["submit"])) {
                                 <div class="p-5">
                                     <br>
                                     <div class="text-center">
-                                        <h1 class="h3 text-gray-900 mb-4">Hello Our Beloved Artist, Welcome Back!</h1>
+                                        <h1 class="h3 text-gray-900 mb-4">Hello Beloved, Welcome Back!</h1>
                                     </div>
                                     <form method="POST" class="user">
                                         <div class="form-group">
