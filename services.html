@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .cont {
+            position: relative;
+            min-height: 100vh;
+            background-color: #ddd;
+        }
+
+        .cont .img-cont {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 150px;
+            justify-content: center;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cont .img-cont .image {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .cont .popup-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, .9);
+            height: 100%;
+            width: 100%;
+            z-index: 100;
+            display: none;
+        }
+
+        .popup-image span {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            font-size: 60px;
+            font-weight: bolder;
+            color: #fff;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .popup-image img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 5px solid white;
+            border-radius: 5px;
+            width: 750px;
+            object-fit: cover;
+        }
+
+        @media (max-width:768px) {
+            .popup-image img {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cont">
+        <div class="img-cont">
+            <div class="image"><img src="images/3.jpg" alt=""></div>
+        </div>
+
+
+
+        <div class="popup-image">
+            <div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae commodi nobis, illo illum nam, dolorum ipsum, reiciendis nesciunt provident saepe obcaecati iure? Necessitatibus quae deserunt dolore? Neque minima eligendi alias!</p>
+                <span>&times;</span>
+            <img src="images/3.jpg" alt="">
+            </div>
+
+        </div>
+
+    </div>
+    
+
+    <script>
+        document.querySelectorAll('.img-cont img').forEach(image=>{
+            image.onclick = () =>{
+                document.querySelector('.popup-image').style.display = 'block';
+                document.querySelector('.popup-image img').src = image.getAttribute('src');
+            }
+            
+        });
+
+        document.querySelector('.popup-image span').onclick = () =>{
+            document.querySelector('.popup-image').style.display = 'none';
+        } 
+    </script>
+
+</body>
+
+</html>

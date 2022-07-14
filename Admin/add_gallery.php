@@ -234,4 +234,79 @@ if(isset($_POST['delete_artist']))
     }
 }
 
+if(isset($_POST['add_artwork']))
+{
+    $artworkname = $_POST['artworkname'];
+    $artistname = $_POST['artistname'];
+    $medium = $_POST['medium'];
+    $description = $_POST['description'];
+    $price = $_POST['price'];
+    $file = $_FILES['choosefile']['name'];
+
+    $query = "INSERT INTO `artworks`(`art_name`, `art_artist`, `medium`, `art_description`, `price`, `art_img`) 
+              VALUES ('$artworkname','$artistname','$medium','$description','$price','$file');";
+    $res = mysqli_query($connect, $query);
+
+    if($res)
+    {
+        move_uploaded_file($_FILES['choosefile']['tmp_name'], "upload/".$_FILES['choosefile']['name']);
+        $_SESSION['success'] = "New Artwork Added To the Database!";
+        header('Location: admin_artworks.php');
+    }
+    else
+    {
+        $_SESSION['status'] = "Unable To Add New Artwork To the Database!!";
+        header('Location: admin_artworks.php');
+    }
+
+}
+
+if(isset($_POST['edit_artwork']))
+{
+    $editid = $_POST['edit_id'];
+    $editartworkname = $_POST['artworkname'];
+    $editartistname = $_POST['artistname'];
+    $editmedium = $_POST['medium'];
+    $editdescription = $_POST['description'];
+    $editprice = $_POST['price'];
+    $editfile = $_FILES['choosefile']['name'];
+
+    $query = "UPDATE `artworks` SET `art_name`='$editartworkname',`art_artist`='$editartistname',`medium`='$editmedium',
+             `art_description`='$editdescription',`price`='$editprice',`art_img`='$editfile' WHERE `art_id`='$editid';";
+    $res = mysqli_query($connect, $query);
+
+    if($res)
+    {
+        move_uploaded_file($_FILES['choosefile']['tmp_name'], "upload/".$_FILES['choosefile']['name']);
+        $_SESSION['success'] = "Art Information Updated To the Database!";
+        header('Location: admin_artworks.php');
+    }
+    else
+    {
+        $_SESSION['status'] = "Unable To Update Art Information To the Database!!";
+        header('Location: admin_artworks.php');
+    }
+
+}
+
+if(isset($_POST['delete_artwork']))
+{
+    $dltid = $_POST['delete_id'];
+
+    $query = "DELETE FROM `artworks` WHERE `art_id`='$dltid';";
+    $res = mysqli_query($connect, $query);
+    
+    if($res)
+    {
+        $_SESSION['success'] = "Art Information Deleted From the Database!";
+        header('Location: admin_artworks.php');
+    }
+    else
+    {
+        $_SESSION['status'] = "Unable To Delete Art Information From the Database!!";
+        header('Location: admin_artworks.php');
+    }
+}
+
+
 ?>

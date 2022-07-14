@@ -128,93 +128,15 @@ include('admin/security.php');
             margin-left: .75rem;
         }
 
+        img {
+            cursor: pointer;
+        }
+
         .card {
             outline: .1rem;
             cursor: pointer;
             border-radius: 5px;
             box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-        }
-
-        /* artwork gallery Css grid  */
-        .contt {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-gap: .3rem;
-            grid-auto-rows: 150px, 350px;
-        }
-
-        .gallery-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .image {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: 50% 50%;
-            transition: .4s linear;
-        }
-
-        .image img:hover {
-            transform: scale(1.4);
-        }
-
-        .text {
-            opacity: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            transition: .4s linear;
-        }
-
-        .gallery-container:hover .text {
-            opacity: 1;
-        }
-
-        .contt div:nth-child(1) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(2) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(3) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(4) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(5) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(6) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(8) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(9) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(10) {
-            grid-column: span 3;
         }
     </style>
 </head>
@@ -253,58 +175,53 @@ include('admin/security.php');
 
     <hr>
 
+    <?php
+        if (isset($_POST['details'])) {
+            $id = $_POST['details_id'];
+
+            $query = "SELECT * FROM `artworks` WHERE art_id='$id';";
+            $res = mysqli_query($connect, $query);
+
+            if (mysqli_num_rows($res) > 0) {
+        ?>
+
     <div class="container">
 
+    
+        <?php
+            while ($row = mysqli_fetch_assoc($res)) {
+        ?>
+
         <div>
-            <img alt="First slide" class="d-block w-100" src="images/1.jpg">
-            <div class="carousel-caption d-none d-md-block">
-                <h5 class="animated zoomIn" style="animation-delay: .5s">Welcome to the <br>ArtSpace Community!</h5>
-                <p class="animated fadeInLeft" style="animation-delay: 1s">Discover the world of art, Lorem ipsum dolor sit amet, consectetur
-                    adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
-                <p class="animated zoomIn" style="animation-delay: 1s"><a href="#">More Info</a></p>
+            <div class="text-center">
+                <br>
+                <br>
+                <img src="admin/upload/<?php echo $row['art_img']; ?>" alt="artwork">
             </div>
         </div>
-        <hr>
-        <h1 style="text-align: center;">----- Our Beloved Artists -----</h1>
 
         <hr>
+        <h3 style="text-align: center;"><?php echo $row['art_name'] ?></h3>
+        <h4 style="text-align: center;"><i>by</i> <?php echo $row['art_artist'] ?></h4>
+        <h4 style="text-align: center;"><i>medium: <?php echo $row['medium'] ?></i></h4>
+        <hr>
+        <h3 style="text-align: center;"><i>about the art</i></h3>
+        <h5 style="text-align: center;"><?php echo $row['art_description'] ?></h5> <br>
+        <h6 style="text-align: center;"><i><b>estimated price: </b> <?php echo $row['price'] ?></i></h6>
+        <input type="submit" class="container btn btn-secondary" name="add_to_fave" value="add to favourite">
+        <br> <br>
+                
 
-        <div class="contt">
-            <?php
-            $query = "SELECT * FROM `artworks`;";
-            $res = mysqli_query($connect, $query);
-            $res_check = mysqli_num_rows($res) > 0;
-
-            if ($res_check) {
-                while ($row = mysqli_fetch_array($res)) {
-            ?>
-                    <div class="gallery-container">
-                        <div class="image">
-                            <img src="admin/upload/<?php echo $row['art_img']; ?>" alt="artist">
-                        </div>
-                        <div class="text">
-                            <h4>Ttile: <?php echo $row['art_name']; ?></h4>
-                            <h5><i>by</i> <?php echo $row['art_artist']; ?></h5>
-                            <p><i>medium: <?php echo $row['medium']; ?></i></p>
-                        </div>
-
-                    </div>
-            <?php
-                }
-            } else {
-                echo 'No Shows Found!!!';
+        <?php
             }
-            ?>
-            <br>
-        </div> <br> <br> <br>
-
-        <hr class="featurette-divider">
-
-
+        } else {
+                    echo 'No Artwork Found!!!';
+        }
+        }
+        ?>
+            </div>
+        </div>
     </div>
-
-    <br> <br>
-
 
     <footer class="text-center text-white" style="background-color: #f1f1f1;">
         <!-- Grid container -->
@@ -339,6 +256,7 @@ include('admin/security.php');
 
         <!-- Copyright -->
         <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2); font-size: 17px; font-weight: 500;">
+            <a class="float-left" href="artworks_for_user.php">back</a>
             © 2022 Copyright:
             <a class="text-dark" href="http://github.com/nafiahossain">Nafia Hossain</a>
             <p class="float-right"><a href="#">Back to top</a></p>

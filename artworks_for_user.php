@@ -286,6 +286,10 @@ include('admin/security.php');
                             <h4>Ttile: <?php echo $row['art_name']; ?></h4>
                             <h5><i>by</i> <?php echo $row['art_artist']; ?></h5>
                             <p><i>medium: <?php echo $row['medium']; ?></i></p>
+                            <form action="artwork_details.php" method="post">
+                                <input type="hidden" name="details_id" value="<?php echo $row['art_id'] ?>">
+                                <button type="submit" name="details" class="btn btn-secondary">View details &raquo;</button>
+                            </form>
                         </div>
 
                     </div>

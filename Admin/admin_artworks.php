@@ -46,12 +46,16 @@ include('includes/navbar.php');
                     <input type="text" name="artistname" class="form-control" placeholder="Enter Artist's Name" required>
                 </div>
                 <div class="form-group">
-                    <label>Presented By</label>
-                    <input type="text" name="address" class="form-control" placeholder="Enter Gallery Name" required>
+                    <label>Medium</label>
+                    <input type="text" name="medium" class="form-control" placeholder="Enter Medium" required>
                 </div>
                 <div class="form-group">
                     <label>Description</label>
-                    <input type="text" name="info" class="form-control" placeholder="Enter Description" required>
+                    <input type="text" name="description" class="form-control" placeholder="Enter Description" required>
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="text" name="price" class="form-control" placeholder="Enter price" required>
                 </div>
                 <div class="form-group">
                     <label>Image</label>
@@ -59,16 +63,16 @@ include('includes/navbar.php');
                 </div>
             </div>
             <div class="container">
-                <input type="submit" name="add_show" value="Add New Show" class="btn btn-dark my-3">
+                <input type="submit" name="add_artwork" value="Add New Art" class="btn btn-dark my-3">
             </div>
         </form>
     </div>
 
     <div class="card-body shadow">
-        <h4><u>All Shows:</u></h4>
+        <h4><u>All Artworks:</u></h4>
         <div class="table-responsive">
             <?php
-            $query = "SELECT * FROM shows;";
+            $query = "SELECT * FROM `artworks`;";
             $res = mysqli_query($connect, $query);
 
             if (mysqli_num_rows($res) > 0) {
@@ -78,12 +82,13 @@ include('includes/navbar.php');
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Show ID</th>
-                            <th>Show Name</th>
-                            <th>Show-Time</th>
-                            <th>Presented By</th>
-                            <th>Description</th>
+                            <th>Artwork ID</th>
                             <th>Image</th>
+                            <th>Artwork Name</th>
+                            <th>Arttist's Name</th>
+                            <th>Medium</th>
+                            <th>Description</th>
+                            <th>Estimated Price</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -93,22 +98,23 @@ include('includes/navbar.php');
                         while ($row = mysqli_fetch_assoc($res)) {
                         ?>
                             <tr>
-                                <td> <?php echo $row['s_id'] ?> </td>
-                                <td> <?php echo $row['s_name'] ?> </td>
-                                <td> <?php echo $row['time'] ?> </td>
-                                <td> <?php echo $row['place'] ?> </td>
-                                <td> <?php echo $row['info'] ?> </td>
-                                <td> <?php echo '<img src="upload/' . $row['image'] . '" alt="gallery images" width="100px" height="125px">' ?> </td>
+                                <td> <?php echo $row['art_id'] ?> </td>
+                                <td> <?php echo '<img src="upload/' . $row['art_img'] .'" alt="artworks" width="150px" height="120px">' ?> </td>
+                                <td> <?php echo $row['art_name'] ?> </td>
+                                <td> <?php echo $row['art_artist'] ?> </td>
+                                <td> <?php echo $row['medium'] ?> </td>
+                                <td> <?php echo $row['art_description'] ?> </td>
+                                <td> <?php echo $row['price'] ?> </td>
                                 <td>
-                                    <form action="show_edit.php" method="post">
-                                        <input type="hidden" name="edit_id" value="<?php echo $row['s_id'] ?>">
+                                    <form action="artwork_edit.php" method="post">
+                                        <input type="hidden" name="edit_id" value="<?php echo $row['art_id'] ?>">
                                         <button type="submit" name="edit" class="btn btn-success">Edit</button>
                                     </form>
                                 </td>
                                 <td>
                                     <form action="add_gallery.php" method="post">
-                                        <input type="hidden" name="delete_id" value="<?php echo $row['s_id'] ?>">
-                                        <button type="submit" name="delete_show" class="btn btn-danger">Delete</button>
+                                        <input type="hidden" name="delete_id" value="<?php echo $row['art_id'] ?>">
+                                        <button type="submit" name="delete_artwork" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
                             </tr>
