@@ -1,5 +1,17 @@
 <?php
 include('admin/security.php');
+
+$user_id = $_SESSION['us_id'];
+
+if(!isset($user_id)){
+    header("location: login.php");
+}
+
+if(isset($_GET['logout'])){
+    unset($user_id);
+    session_destroy();
+    header("location: login.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -142,6 +154,13 @@ include('admin/security.php');
 </head>
 
 <body>
+    <?php
+        $select_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `u_id`= '$user_id';") or die('query failed');
+
+        if(mysqli_num_rows($select_user) > 0){
+            $fetch_user = mysqli_fetch_assoc($select_user);
+        }
+    ?>
     <div class="topnav box-shadow">
 
         <!-- Centered link -->
@@ -276,7 +295,7 @@ include('admin/security.php');
 
         <!-- Copyright -->
         <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2); font-size: 17px; font-weight: 500;">
-            <a class="float-left" href="artists.php">back</a>
+            <a class="float-left" href="artists_for_user.php">back</a>
             © 2022 Copyright:
             <a class="text-dark" href="http://github.com/nafiahossain">Nafia Hossain</a>
             <p class="float-right"><a href="#">Back to top</a></p>

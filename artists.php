@@ -203,10 +203,6 @@ include('admin/security.php');
                                 <div class="card-body text-center">
                                     <h3><?php echo $row['ar_name']; ?></h3>
                                     <h6><?php echo $row['ar_bio']; ?></h6>
-                                    <form action="artist_details.php" method="post">
-                                        <input type="hidden" name="details_id" value="<?php echo $row['ar_id'] ?>">
-                                        <button type="submit" name="details" class="btn btn-secondary">View details &raquo;</button>
-                                    </form>
                                 </div>
                             </div> <br> <br>
                         </div>

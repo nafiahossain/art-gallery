@@ -13,8 +13,8 @@ if (isset($_POST["submit"])) {
     $resultcheck = mysqli_num_rows($result);
     if ($resultcheck > 0) {
         $row = mysqli_fetch_assoc($result);
-        $_SESSION['username'] = $row['username'];
-        header("location: home.html");
+        $_SESSION['us_id'] = $row['u_id'];
+        header("location: myprofile.php");
     } else {
         echo "<script>alert('Email or username or password is wrong.')</script>";
     }

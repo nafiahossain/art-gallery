@@ -1,3 +1,21 @@
+<?php
+
+include('admin/security.php');
+
+$user_id = $_SESSION['us_id'];
+
+if(!isset($user_id)){
+    header("location: login.php");
+}
+
+if(isset($_GET['logout'])){
+    unset($user_id);
+    session_destroy();
+    header("location: login.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -230,6 +248,13 @@
 </head>
 
 <body>
+    <?php
+        $select_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `u_id`= '$user_id';") or die('query failed');
+
+        if(mysqli_num_rows($select_user) > 0){
+            $fetch_user = mysqli_fetch_assoc($select_user);
+        }
+    ?>
     <div class="topnav box-shadow">
         <!-- Centered link -->
         <div class="topnav-centered">
@@ -243,21 +268,23 @@
         <!-- Right-aligned links -->
         <div class="topnav-right">
             <a href="#search">Contact</a>
-            <a style="margin-right: 350px;" href="register.php">Join</a>
+            <a style="margin-right: 350px;" href="myprofile.php">My Profile</a>
         </div>
     </div>
 
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between container">
-            <a class="p-2 text-muted" href="#">Artists</a>
-            <a class="p-2 text-muted" href="#">Galleries</a>
-            <a class="p-2 text-muted" href="#">Exhibitions</a>
-            <a class="p-2 text-muted" href="#">Museums</a>
-            <a class="p-2 text-muted" href="#">Culture</a>
-            <a class="p-2 text-muted" href="#">blogs</a>
-            <a class="p-2 text-muted" href="#">Search</a>
+            <a class="p-2 text-muted" href="artists_for_user.php">Artists</a>
+            <a class="p-2 text-muted" href="galleries.php">Galleries</a>
+            <a class="p-2 text-muted" href="shows.php">Exhibitions</a>
+            <a class="p-2 text-muted" href="artworks_for_user.php">Artworks</a>
+            <a class="p-2 text-muted" href="#">Blogs</a>
+            <a class="p-2 text-muted" href="#">My Collections</a>
+            <a class="p-2 text-muted" href="home_for_user.php?logout=<?php echo $user_id; ?>" 
+                onclick="return confirm('are you sure you want to logout?');">Logout</a>
         </nav>
     </div>
+
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">

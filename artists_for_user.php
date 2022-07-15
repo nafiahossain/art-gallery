@@ -147,88 +147,6 @@ if(isset($_GET['logout'])){
             border-radius: 5px;
             box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
         }
-
-        /* artwork gallery Css grid  */
-        .contt {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-gap: .3rem;
-            grid-auto-rows: 150px, 350px;
-        }
-
-        .gallery-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .image {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: 50% 50%;
-            transition: .4s linear;
-        }
-
-        .image img:hover {
-            transform: scale(1.4);
-        }
-
-        .text {
-            opacity: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            transition: .4s linear;
-        }
-
-        .gallery-container:hover .text {
-            opacity: 1;
-        }
-
-        .contt div:nth-child(1) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(2) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(3) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(4) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(5) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(6) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(8) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(9) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(10) {
-            grid-column: span 3;
-        }
     </style>
 </head>
 
@@ -287,48 +205,46 @@ if(isset($_GET['logout'])){
         <hr>
         <h1 style="text-align: center;">----- Our Beloved Artists -----</h1>
 
-        <hr>
+        <hr >
 
-        <div class="contt">
-            <?php
-            $query = "SELECT * FROM `artworks`;";
-            $res = mysqli_query($connect, $query);
-            $res_check = mysqli_num_rows($res) > 0;
+        <div class="container py-5">
+            <div class="row mt-4">
+                <?php
+                $query = "SELECT * FROM `artists`;";
+                $res = mysqli_query($connect, $query);
+                $res_check = mysqli_num_rows($res) > 0;
 
-            if ($res_check) {
-                while ($row = mysqli_fetch_array($res)) {
-            ?>
-                    <div class="gallery-container">
-                        <div class="image">
-                            <img src="admin/upload/<?php echo $row['art_img']; ?>" alt="artist">
+                if ($res_check) {
+                    while ($row = mysqli_fetch_array($res)) {
+                ?>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="admin/upload/<?php echo $row['ar_img']; ?>" width="px" height="400px" alt="artist">
+                                <div class="card-body text-center">
+                                    <h3><?php echo $row['ar_name']; ?></h3>
+                                    <h6><?php echo $row['ar_bio']; ?></h6>
+                                    <form action="artist_details.php" method="post">
+                                        <input type="hidden" name="details_id" value="<?php echo $row['ar_id'] ?>">
+                                        <button type="submit" name="details" class="btn btn-secondary">View details &raquo;</button>
+                                    </form>
+                                </div>
+                            </div> <br> <br>
                         </div>
-                        <div class="text">
-                            <h4>Ttile: <?php echo $row['art_name']; ?></h4>
-                            <h5><i>by</i> <?php echo $row['art_artist']; ?></h5>
-                            <p><i>medium: <?php echo $row['medium']; ?></i></p>
-                            <form action="artwork_details.php" method="post">
-                                <input type="hidden" name="details_id" value="<?php echo $row['art_id'] ?>">
-                                <button type="submit" name="details" class="btn btn-secondary">View details &raquo;</button>
-                            </form>
-                        </div>
 
-                    </div>
-            <?php
+
+                <?php
+                    }
+                } else {
+                    echo 'No Shows Found!!!';
                 }
-            } else {
-                echo 'No Shows Found!!!';
-            }
-            ?>
-            <br>
-        </div> <br> <br> <br>
+                ?>
+            </div>
+        
 
-        <hr class="featurette-divider">
-
+            <hr class="featurette-divider">
+        </div>
 
     </div>
-
-    <br> <br>
-
 
     <footer class="text-center text-white" style="background-color: #f1f1f1;">
         <!-- Grid container -->

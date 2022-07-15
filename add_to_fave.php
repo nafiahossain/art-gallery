@@ -1,18 +1,5 @@
 <?php
 include('admin/security.php');
-
-$user_id = $_SESSION['us_id'];
-
-if(!isset($user_id)){
-    header("location: login.php");
-}
-
-if(isset($_GET['logout'])){
-    unset($user_id);
-    session_destroy();
-    header("location: login.php");
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -141,105 +128,20 @@ if(isset($_GET['logout'])){
             margin-left: .75rem;
         }
 
+        img {
+            cursor: pointer;
+        }
+
         .card {
             outline: .1rem;
             cursor: pointer;
             border-radius: 5px;
             box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
         }
-
-        /* artwork gallery Css grid  */
-        .contt {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-gap: .3rem;
-            grid-auto-rows: 150px, 350px;
-        }
-
-        .gallery-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .image {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: 50% 50%;
-            transition: .4s linear;
-        }
-
-        .image img:hover {
-            transform: scale(1.4);
-        }
-
-        .text {
-            opacity: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            transition: .4s linear;
-        }
-
-        .gallery-container:hover .text {
-            opacity: 1;
-        }
-
-        .contt div:nth-child(1) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(2) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(3) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(4) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(5) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(6) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(8) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(9) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(10) {
-            grid-column: span 3;
-        }
     </style>
 </head>
 
 <body>
-    <?php
-        $select_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `u_id`= '$user_id';") or die('query failed');
-
-        if(mysqli_num_rows($select_user) > 0){
-            $fetch_user = mysqli_fetch_assoc($select_user);
-        }
-    ?>
     <div class="topnav box-shadow">
 
         <!-- Centered link -->
@@ -272,62 +174,6 @@ if(isset($_GET['logout'])){
     </div>
 
     <hr>
-
-    <div class="container">
-
-        <div>
-            <img alt="First slide" class="d-block w-100" src="images/1.jpg">
-            <div class="carousel-caption d-none d-md-block">
-                <h5 class="animated zoomIn" style="animation-delay: .5s">Welcome to the <br>ArtSpace Community!</h5>
-                <p class="animated fadeInLeft" style="animation-delay: 1s">Discover the world of art, Lorem ipsum dolor sit amet, consectetur
-                    adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
-                <p class="animated zoomIn" style="animation-delay: 1s"><a href="#">More Info</a></p>
-            </div>
-        </div>
-        <hr>
-        <h1 style="text-align: center;">----- Our Beloved Artists -----</h1>
-
-        <hr>
-
-        <div class="contt">
-            <?php
-            $query = "SELECT * FROM `artworks`;";
-            $res = mysqli_query($connect, $query);
-            $res_check = mysqli_num_rows($res) > 0;
-
-            if ($res_check) {
-                while ($row = mysqli_fetch_array($res)) {
-            ?>
-                    <div class="gallery-container">
-                        <div class="image">
-                            <img src="admin/upload/<?php echo $row['art_img']; ?>" alt="artist">
-                        </div>
-                        <div class="text">
-                            <h4>Ttile: <?php echo $row['art_name']; ?></h4>
-                            <h5><i>by</i> <?php echo $row['art_artist']; ?></h5>
-                            <p><i>medium: <?php echo $row['medium']; ?></i></p>
-                            <form action="artwork_details.php" method="post">
-                                <input type="hidden" name="details_id" value="<?php echo $row['art_id'] ?>">
-                                <button type="submit" name="details" class="btn btn-secondary">View details &raquo;</button>
-                            </form>
-                        </div>
-
-                    </div>
-            <?php
-                }
-            } else {
-                echo 'No Shows Found!!!';
-            }
-            ?>
-            <br>
-        </div> <br> <br> <br>
-
-        <hr class="featurette-divider">
-
-
-    </div>
-
-    <br> <br>
 
 
     <footer class="text-center text-white" style="background-color: #f1f1f1;">
@@ -363,6 +209,7 @@ if(isset($_GET['logout'])){
 
         <!-- Copyright -->
         <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2); font-size: 17px; font-weight: 500;">
+            <a class="float-left" href="artists_for_user.php">back</a>
             © 2022 Copyright:
             <a class="text-dark" href="http://github.com/nafiahossain">Nafia Hossain</a>
             <p class="float-right"><a href="#">Back to top</a></p>

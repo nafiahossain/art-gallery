@@ -1,5 +1,25 @@
 <?php
 include('admin/security.php');
+
+$user_id = $_SESSION['us_id'];
+
+if(!isset($user_id)){
+    header("location: login.php");
+}
+
+if(isset($_GET['logout'])){
+    unset($user_id);
+    session_destroy();
+    header("location: login.php");
+}
+
+if(isset($_POST['add_to_fave'])){
+
+    $art = $_POST[''];
+    $artist = $_POST[''];
+    $art_medium = $_POST[''];
+    $art_price = $_POST[''];
+}
 ?>
 
 <!DOCTYPE html>
@@ -142,6 +162,13 @@ include('admin/security.php');
 </head>
 
 <body>
+    <?php
+        $select_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `u_id`= '$user_id';") or die('query failed');
+
+        if(mysqli_num_rows($select_user) > 0){
+            $fetch_user = mysqli_fetch_assoc($select_user);
+        }
+    ?>
     <div class="topnav box-shadow">
 
         <!-- Centered link -->
@@ -208,6 +235,10 @@ include('admin/security.php');
         <h3 style="text-align: center;"><i>about the art</i></h3>
         <h5 style="text-align: center;"><?php echo $row['art_description'] ?></h5> <br>
         <h6 style="text-align: center;"><i><b>estimated price: </b> <?php echo $row['price'] ?></i></h6>
+
+        
+
+
         <input type="submit" class="container btn btn-secondary" name="add_to_fave" value="add to favourite">
         <br> <br>
                 
