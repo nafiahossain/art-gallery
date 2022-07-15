@@ -94,20 +94,7 @@ include('admin/security.php');
 
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <a href="#img" data-rel="popup" data-position-to="window">
-                    <img src="images/fifth.jpg" alt="img" class="img-thumbnail" width="300px">
-                </a>
-                <div data-role="popup" id="img">
-                    <img src="images/fifth.jpg" alt="img" class="img-thumbnail" width="500px">
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+   
 
 
     <footer class="text-center text-white" style="background-color: #f1f1f1;">

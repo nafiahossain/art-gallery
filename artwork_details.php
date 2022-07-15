@@ -3,6 +3,8 @@ include('admin/security.php');
 
 $user_id = $_SESSION['us_id'];
 
+$art_id = $_SESSION['art_id'];
+
 if(!isset($user_id)){
     header("location: login.php");
 }
@@ -15,10 +17,26 @@ if(isset($_GET['logout'])){
 
 if(isset($_POST['add_to_fave'])){
 
-    $art = $_POST[''];
-    $artist = $_POST[''];
-    $art_medium = $_POST[''];
-    $art_price = $_POST[''];
+    $art = $_POST['art'];
+    $artist = $_POST['artist'];
+    $art_medium = $_POST['art_medium'];
+    $art_price = $_POST['art_price'];
+    $art_img = $_POST['art_img'];
+
+    $select_fave = mysqli_query($connect, "SELECT * FROM `fave` WHERE
+                 `f_name` = '$art' AND `user_id` = '$user_id';" ) or die('query failed');
+    
+    if(mysqli_num_rows($select_fave) > 0){
+        echo "<script>alert('This Artwork is Already Added To Your Collection!')</script>";
+    }
+    else {
+        mysqli_query($connect, "INSERT INTO `fave`(`user_id`, `f_name`, `f_aname`,
+       `f_medium`, `f_price`, `f_img`) VALUES ('$user_id','$art','$artist',
+       '$art_medium','$art_price','$art_img')") or die('query failed');
+        echo "<script>alert('Artwork Added To Your Collection!')</script>";
+        
+    }
+    header("location: myprofile.php");
 }
 ?>
 
@@ -162,6 +180,14 @@ if(isset($_POST['add_to_fave'])){
 </head>
 
 <body>
+    <?php 
+    if(isset($message)){
+        foreach($message as $message){
+            echo '<div class = "message" onclick = "this.remove();">' .$message. '</div>';
+        }
+    }
+    ?>
+
     <?php
         $select_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `u_id`= '$user_id';") or die('query failed');
 
@@ -169,6 +195,15 @@ if(isset($_POST['add_to_fave'])){
             $fetch_user = mysqli_fetch_assoc($select_user);
         }
     ?>
+
+    <?php
+        $select_art = mysqli_query($connect, "SELECT * FROM `artworks` WHERE `art_id`= '$art_id';") or die('query failed');
+
+        if(mysqli_num_rows($select_art) > 0){
+            $fetch_art = mysqli_fetch_assoc($select_art);
+        }
+    ?>
+
     <div class="topnav box-shadow">
 
         <!-- Centered link -->
@@ -226,7 +261,7 @@ if(isset($_POST['add_to_fave'])){
                 <img src="admin/upload/<?php echo $row['art_img']; ?>" alt="artwork">
             </div>
         </div>
-
+        
         <hr>
         <h3 style="text-align: center;"><?php echo $row['art_name'] ?></h3>
         <h4 style="text-align: center;"><i>by</i> <?php echo $row['art_artist'] ?></h4>
@@ -236,10 +271,18 @@ if(isset($_POST['add_to_fave'])){
         <h5 style="text-align: center;"><?php echo $row['art_description'] ?></h5> <br>
         <h6 style="text-align: center;"><i><b>estimated price: </b> <?php echo $row['price'] ?></i></h6>
 
+        <form action="" method="post">
+            <input type="hidden" name="art" value="<?php echo $row['art_name'] ?>">
+            <input type="hidden" name="artist" value="<?php echo $row['art_artist'] ?>">
+            <input type="hidden" name="art_medium" value="<?php echo $row['medium'] ?>">
+            <input type="hidden" name="art_price" value="<?php echo $row['price'] ?>">
+            <input type="hidden" name="art_img" value="<?php echo $row['art_img']; ?>">
+
+            <h2 class="text-center">Hello <?php echo $fetch_user['fullname']; ?>!</h2>
         
-
-
-        <input type="submit" class="container btn btn-secondary" name="add_to_fave" value="add to favourite">
+            <input type="submit" class="container btn btn-secondary" name="add_to_fave" value="add to favourite">
+        </form>
+        
         <br> <br>
                 
 

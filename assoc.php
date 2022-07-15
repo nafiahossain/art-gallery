@@ -297,7 +297,7 @@ if(isset($_GET['logout'])){
 
 
             if ($res_check) {
-                while ($row = mysqli_fetch_array($res)) {
+                while ($row = mysqli_fetch_assoc($res)) {
                     $_SESSION['art_id'] = $row['art_id'];
             ?>
                     <div class="gallery-container">

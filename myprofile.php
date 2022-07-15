@@ -213,11 +213,49 @@ if(isset($_GET['logout'])){
         onclick="return confirm('are you sure you want to logout?');"
         class="btn btn-dark my-3">Logout</a>
 
-    <hr>
+    
     
 
 
     <hr class="featurette-divider">
+
+    <h4 class="text-center">My collection</h4>
+    <div class="container py-5">
+            <div class="row mt-4">
+                <?php
+                $select_faves = mysqli_query($connect, "SELECT * FROM `fave` WHERE `user_id` = '$user_id';") or die('query failed');
+
+                if (mysqli_num_rows($select_faves) > 0) {
+                    while ($fetch_faves = mysqli_fetch_assoc($select_faves)) {
+                ?>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="admin/upload/<?php echo $fetch_faves['f_img']; ?>" width="px" height="400px" alt="artist">
+                                <div class="card-body text-center">
+                                    <h3><?php echo $fetch_faves['f_name']; ?></h3>
+                                    <h6><?php echo $fetch_faves['f_aname']; ?></h6>
+                                    <h6><?php echo $fetch_faves['f_medium']; ?></h6>
+                                    <h6><?php echo $fetch_faves['f_price']; ?></h6>
+                                    <form action=".php" method="post">
+                                        <input type="hidden" name="details_id" value="<?php echo $fetch_faves['f_id'] ?>">
+                                        <button type="submit" name="details" class="btn btn-secondary">Remove</button>
+                                    </form>
+                                </div>
+                            </div> <br> <br>
+                        </div>
+
+
+                <?php
+                    }
+                } else {
+                    echo 'No Shows Found!!!';
+                }
+                ?>
+            </div>
+        
+
+            <hr class="featurette-divider">
+        </div>
 
         
     </div>
