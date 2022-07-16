@@ -238,8 +238,8 @@ if(isset($_POST['add_to_fave'])){
     <hr>
 
     <?php
-        if (isset($_POST['details'])) {
-            $id = $_POST['details_id'];
+        if (isset($_GET['details_id'])) {
+            $id = $_GET['details_id'];
 
             $query = "SELECT * FROM `artworks` WHERE art_id='$id';";
             $res = mysqli_query($connect, $query);
