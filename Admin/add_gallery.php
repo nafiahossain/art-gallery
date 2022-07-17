@@ -398,5 +398,24 @@ if(isset($_POST['delete_user']))
     }
 }
 
+if(isset($_POST['delete_review']))
+{
+    $dltid = $_POST['delete_id'];
+
+    $query = "DELETE FROM `reviews` WHERE `r_id`='$dltid';";
+    $res = mysqli_query($connect, $query);
+    
+    if($res)
+    {
+        $_SESSION['success'] = "Review Deleted From the Database!";
+        header('Location: admin_reviews.php');
+    }
+    else
+    {
+        $_SESSION['status'] = "Unable To Delete Review From the Database!!";
+        header('Location: admin_reviews.php');
+    }
+}
+
 
 ?>

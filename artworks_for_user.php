@@ -261,13 +261,14 @@ if(isset($_GET['logout'])){
 
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between container">
-            <a class="p-2 text-muted" href="#">Artists</a>
-            <a class="p-2 text-muted" href="#">Galleries</a>
-            <a class="p-2 text-muted" href="#">Exhibitions</a>
-            <a class="p-2 text-muted" href="#">Museums</a>
-            <a class="p-2 text-muted" href="#">Culture</a>
-            <a class="p-2 text-muted" href="#">blogs</a>
-            <a class="p-2 text-muted" href="#">Search</a>
+            <a class="p-2 text-muted" href="artists_for_user.php">Artists</a>
+            <a class="p-2 text-muted" href="galleries.php">Galleries</a>
+            <a class="p-2 text-muted" href="shows.php">Exhibitions</a>
+            <a class="p-2 text-muted" href="artworks_for_user.php">Artworks</a>
+            <a class="p-2 text-muted" href="reviews.php">Reviews</a>
+            <a class="p-2 text-muted" href="myprofile.php">My Collections</a>
+            <a class="p-2 text-muted" href="home_for_user.php?logout=<?php echo $user_id; ?>" 
+                onclick="return confirm('are you sure you want to logout?');">Logout</a>
         </nav>
     </div>
 
@@ -317,7 +318,7 @@ if(isset($_GET['logout'])){
             <?php
                 }
             } else {
-                echo 'No Shows Found!!!';
+                echo 'No artworks Found!!!';
             }
             ?>
             <br>

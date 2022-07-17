@@ -172,9 +172,9 @@ include('admin/security.php');
             <a class="p-2 text-muted" href="#">Search</a>
         </nav>
     </div>
-
+  
     <hr>
-
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur minus natus enim nisi, rem quasi laborum libero dicta mollitia quibusdam beatae velit laudantium facilis eaque perspiciatis veritatis tempora, dolores blanditiis!</p>
 
     <!--footer-->
     <?php

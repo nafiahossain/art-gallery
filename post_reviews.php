@@ -1,5 +1,6 @@
 <?php
 include('admin/security.php');
+error_reporting(0);
 
 $user_id = $_SESSION['us_id'];
 
@@ -13,6 +14,31 @@ if(isset($_GET['logout'])){
     header("location: login.php");
 }
 
+if(isset($_POST['submit']))
+{
+    $title = $_POST['title'];
+    $stitle = str_replace("'", "\'", $title);
+    $review = $_POST['review'];
+    $category = $_POST['category'];
+    $files = $_FILES['choose']['name'];
+
+    $query = "INSERT INTO `reviews`(`user_id`, `title`, `review`, `category`, `r_img`) VALUES 
+          ('$user_id',' $stitle','$review','$category','$files');";
+    $res = mysqli_query($connect, $query);
+
+    if($res)
+    {
+        move_uploaded_file($_FILES['choose']['tmp_name'], "admin/upload/".$_FILES['choose']['name']);
+        echo "<script>alert('Review Posted.')</script>";
+
+    }
+    else
+    {
+        echo "<script>alert('Something went wrong.')</script>";
+ 
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +48,7 @@ if(isset($_GET['logout'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galleries | ArtSpace</title>
+    <title>Post Reviews | ArtSpace</title>
     <link rel="shortcut icon" type="image" href="images/t2.png">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
@@ -141,6 +167,10 @@ if(isset($_GET['logout'])){
             margin-left: .75rem;
         }
 
+        img {
+            cursor: pointer;
+        }
+
         .card {
             outline: .1rem;
             cursor: pointer;
@@ -152,11 +182,11 @@ if(isset($_GET['logout'])){
 
 <body>
     <?php
-        $select_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `u_id`= '$user_id';") or die('query failed');
+    $select_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `u_id`= '$user_id';") or die('query failed');
 
-        if(mysqli_num_rows($select_user) > 0){
-            $fetch_user = mysqli_fetch_assoc($select_user);
-        }
+    if(mysqli_num_rows($select_user) > 0){
+        $fetch_user = mysqli_fetch_assoc($select_user);
+    }
     ?>
     <div class="topnav box-shadow">
 
@@ -193,58 +223,68 @@ if(isset($_GET['logout'])){
     <hr>
 
     <div class="container">
-
-        <div>
-            <img alt="First slide" class="d-block w-100" src="images/1.jpg">
-            <div class="carousel-caption d-none d-md-block">
-                <h5 class="animated zoomIn" style="animation-delay: .5s">Welcome to the <br>ArtSpace Community!</h5>
-                <p class="animated fadeInLeft" style="animation-delay: 1s">Discover the world of art, Lorem ipsum dolor sit amet, consectetur
-                    adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
-                <p class="animated zoomIn" style="animation-delay: 1s"><a href="#">More Info</a></p>
-            </div>
-        </div>
-        <hr>
-        <h1 style="text-align: center;">----- Our Beloved Artists -----</h1>
-
-        <hr >
-
-        <div class="container py-5">
-            <div class="row mt-4">
-                <?php
-                $query = "SELECT * FROM `artists`;";
-                $res = mysqli_query($connect, $query);
-                $res_check = mysqli_num_rows($res) > 0;
-
-                if ($res_check) {
-                    while ($row = mysqli_fetch_array($res)) {
-                ?>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img src="admin/upload/<?php echo $row['ar_img']; ?>" width="px" height="400px" alt="artist">
-                                <div class="card-body text-center">
-                                    <h3><?php echo $row['ar_name']; ?></h3>
-                                    <h6><?php echo $row['ar_bio']; ?></h6>
-                                    <a href="artist_details.php?details_id=<?php echo $row['ar_id'] ?>">
-                                        <button type="submit" name="details" class="btn btn-secondary">View details &raquo;</button>
-                                    </a>
-                                </div>
-                            </div> <br> <br>
+    
+        <div class="col-lg-11 mx-auto">
+            <div class="card o-hidden border-1  my-5">
+                <div class="card-body p-0">
+                    <div class="p-4">
+                        <br>
+                        <div class="text-center">
+                            <img src="images/rev.jpg" alt=""> <br>
+                            <br>
+                            <h2 class="text-gray-900">Write your reviews about ArtSpace!</h2>
+                            <h5 class="text-gray-900">Share your experience with ArtSpace, their artists, artwork 
+                                collections, Exhibitions and galleries! Try to keep your reviews relevant and respect our 
+                                artists their artworks and our employees. Don't forget to Be Kind!</h5>
+                        <hr>
+                        <br>
                         </div>
+                        <form method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label><b> Title of Your Review:</b></label>
+                                <input type="text" name="title" class="form-control" value="" placeholder="Title" required>
+                            </div>
+                            <div class="form-group">
+                                <label><b>Write Your Review:</b></label>
+                                <textarea name="review" class="form-control" cols="30" rows="10" placeholder="Review Goes Here!" required></textarea>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label><b>Category:</b> </label>
+                                    <select name="category" class="form-control">
+                                        <option value="">--Select--</option>
+                                        <option value="Artist">Artist</option>
+                                        <option value="Artwork">Artwork</option>
+                                        <option value="Gallery">Gallery</option>
+                                        <option value="Exhibition">Exhibition</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label><b>Include a Relevant Image:</b></label>
+                                <input class="form-control" type="file" name="choose" id="formFile" required>
+                            </div>
 
+                            <input type="submit" name="submit" class="btn btn-dark btn-user btn-block" value="Post Review">
 
-                <?php
-                    }
-                } else {
-                    echo 'No Shows Found!!!';
-                }
-                ?>
+                        </form>
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="text-center">
+                            <img src="images/rev2.jpg" width="890px" height="250px" alt=""> <br>
+                            <br>
+                            <a class="medium" href="login.php">Discover more Reviews!</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        
-
-            <hr class="featurette-divider">
         </div>
 
     </div>
+
+    
+
 
     <!--footer-->
     <?php

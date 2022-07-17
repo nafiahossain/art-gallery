@@ -23,7 +23,7 @@ if (isset($_POST['remove'])) {
     if ($res) {
         echo "<script>alert('Artwork Removed.')</script>";
     } else {
-        echo "<script>alert('Unable To Artwork.')</script>";
+        echo "<script>alert('Unable To remove Artwork.')</script>";
     }
 }
 ?>
@@ -188,14 +188,15 @@ if (isset($_POST['remove'])) {
     </div>
 
     <div class="nav-scroller py-1 mb-2">
-        <nav class="nav d-flex justify-content-between container">
+    <nav class="nav d-flex justify-content-between container">
             <a class="p-2 text-muted" href="artists_for_user.php">Artists</a>
             <a class="p-2 text-muted" href="galleries.php">Galleries</a>
             <a class="p-2 text-muted" href="shows.php">Exhibitions</a>
             <a class="p-2 text-muted" href="artworks_for_user.php">Artworks</a>
-            <a class="p-2 text-muted" href="#">Blogs</a>
-            <a class="p-2 text-muted" href="#">My Collections</a>
-            <a class="p-2 text-muted" href="#">Logout</a>
+            <a class="p-2 text-muted" href="reviews.php">Reviews</a>
+            <a class="p-2 text-muted" href="myprofile.php">My Collections</a>
+            <a class="p-2 text-muted" href="home_for_user.php?logout=<?php echo $user_id; ?>" 
+                onclick="return confirm('are you sure you want to logout?');">Logout</a>
         </nav>
     </div>
 

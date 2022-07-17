@@ -195,9 +195,15 @@ include('includes/navbar.php');
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                        Total Exhibitions</div>
+                                        Total Reviews</div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                        
+                                    <?php
+                                        $query = "SELECT `r_id` FROM `reviews` ORDER BY `r_id`;";
+                                        $res = mysqli_query($connect, $query);
+
+                                        $row = mysqli_num_rows($res);
+                                        echo '<h2>' .$row. '</h2>';
+                                        ?>
                                     </div>
                                 </div>
                             </div>
