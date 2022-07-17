@@ -14,7 +14,7 @@ if (isset($_POST["submit"]))
     if($resultcheck > 0)
     {
         $row = mysqli_fetch_assoc($result);
-        $_SESSION['username'] = $row['username'];
+        $_SESSION['admin_id'] = $row['a_id'];
         header("location: index.php");
     }
     else

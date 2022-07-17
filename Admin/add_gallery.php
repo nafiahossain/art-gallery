@@ -8,7 +8,7 @@ if(isset($_POST['add_admin']))
     $adminname = $_POST['adminname'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
-    $password = $_POST['password'];
+    $password = md5($_POST['password']);
 
     $query = "INSERT INTO `admin`(`a_name`, `email`, `phone`, `password`) 
               VALUES ('$adminname','$email','$phone','$password');";
@@ -16,6 +16,10 @@ if(isset($_POST['add_admin']))
 
     if($res)
     {
+        $fullname = "";
+        $email = "";
+        $phone = "";
+        $_POST['password'] = "";
         $_SESSION['success'] = "New Admin member Added To the Database!";
         header('Location: admin.php');
     }
@@ -33,7 +37,7 @@ if(isset($_POST['edit_admin']))
     $editadminname = $_POST['adminname'];
     $editemail = $_POST['email'];
     $editphone = $_POST['phone'];
-    $editpassword = $_POST['password'];
+    $editpassword = md5($_POST['password']);
 
     $query = "UPDATE `admin` SET `a_name`='$editadminname',`email`='$editemail',
              `phone`='$editphone',`password`='$editpassword' WHERE `a_id`='$editid';";

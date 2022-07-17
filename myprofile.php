@@ -4,16 +4,28 @@ include('admin/security.php');
 
 $user_id = $_SESSION['us_id'];
 
-if(!isset($user_id)){
+if (!isset($user_id)) {
     header("location: login.php");
 }
 
-if(isset($_GET['logout'])){
+if (isset($_GET['logout'])) {
     unset($user_id);
     session_destroy();
     header("location: login.php");
 }
 
+if (isset($_POST['remove'])) {
+    $rmvid = $_POST['remove_id'];
+
+    $query = "DELETE FROM `fave` WHERE `f_id`='$rmvid';";
+    $res = mysqli_query($connect, $query);
+
+    if ($res) {
+        echo "<script>alert('Artwork Removed.')</script>";
+    } else {
+        echo "<script>alert('Unable To Artwork.')</script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +35,7 @@ if(isset($_GET['logout'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galleries | ArtSpace</title>
+    <title>My Profile | ArtSpace</title>
     <link rel="shortcut icon" type="image" href="images/t2.png">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
@@ -190,37 +202,51 @@ if(isset($_GET['logout'])){
     <hr>
 
     <div class="container">
-        
-    <?php
+
+        <?php
         $select_user = mysqli_query($connect, "SELECT * FROM `users` WHERE `u_id`= '$user_id';") or die('query failed');
 
-        if(mysqli_num_rows($select_user) > 0){
+        if (mysqli_num_rows($select_user) > 0) {
             $fetch_user = mysqli_fetch_assoc($select_user);
         }
-    ?>
+        ?>
 
-    <h2 class="text-center">Hello <?php echo $fetch_user['fullname']; ?>!</h2>
-    <h3 class="text-center"><i>Welcome to ArtSpace!</i> </h3>
+        <h2 class="text-center">Hello <?php echo $fetch_user['fullname']; ?>!</h2>
+        <h3 class="text-center"><i>Welcome to ArtSpace!</i> </h3>
 
-    <hr class="featurette-divider">
+        <hr class="container">
 
-    <h4><u>Your Profile:</u></h4>
-    <h5><i>Name: </i> <?php echo $fetch_user['fullname']; ?></h5>
-    <h5><i>User Name: </i> <?php echo $fetch_user['username']; ?></h5>
-    <h5><i>Mailing Address: </i> <?php echo $fetch_user['email']; ?></h5>
-    <h5><i>Contact Number: </i> <?php echo $fetch_user['phone']; ?></h5>
-    <a href="myprofile.php?logout=<?php echo $user_id; ?>" 
-        onclick="return confirm('are you sure you want to logout?');"
-        class="btn btn-dark my-3">Logout</a>
+        <div class="container py-4">
+            <div class="row align-items-md-stretch">
+                <div class="col-md-6">
+                    <div class="h-100 p-5 border rounded-5">
+                        <h4><u>Your Profile:</u></h4>
+                        <h5><i>Name: </i> <?php echo $fetch_user['fullname']; ?></h5>
+                        <h5><i>User Name: </i> <?php echo $fetch_user['username']; ?></h5>
+                        <h5><i>Mailing Address: </i> <?php echo $fetch_user['email']; ?></h5>
+                        <h5><i>Contact Number: </i> <?php echo $fetch_user['phone']; ?></h5>
+                        <a href="myprofile.php?logout=<?php echo $user_id; ?>" onclick="return confirm('are you sure you want to logout?');" class="btn btn-dark my-3">Logout</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="h-100 p-5 border rounded-5">
+                        <h4><u>Your Profile:</u></h4>
+                        <h5><i>Name: </i> <?php echo $fetch_user['fullname']; ?></h5>
+                        <h5><i>User Name: </i> <?php echo $fetch_user['username']; ?></h5>
+                        <h5><i>Mailing Address: </i> <?php echo $fetch_user['email']; ?></h5>
+                        <h5><i>Contact Number: </i> <?php echo $fetch_user['phone']; ?></h5>
+                        <a href="myprofile.php?logout=<?php echo $user_id; ?>" onclick="return confirm('are you sure you want to logout?');" class="btn btn-dark my-3">Logout</a>
+                    </div>
+                </div>
+            </div>
 
-    
-    
+        </div>
 
 
-    <hr class="featurette-divider">
+        <hr class="container">
 
-    <h4 class="text-center">My collection</h4>
-    <div class="container py-5">
+        <h4 class="text-center">My collection</h4>
+        <div class="container py-5">
             <div class="row mt-4">
                 <?php
                 $select_faves = mysqli_query($connect, "SELECT * FROM `fave` WHERE `user_id` = '$user_id';") or die('query failed');
@@ -236,9 +262,9 @@ if(isset($_GET['logout'])){
                                     <h6><?php echo $fetch_faves['f_aname']; ?></h6>
                                     <h6><?php echo $fetch_faves['f_medium']; ?></h6>
                                     <h6><?php echo $fetch_faves['f_price']; ?></h6>
-                                    <form action=".php" method="post">
-                                        <input type="hidden" name="details_id" value="<?php echo $fetch_faves['f_id'] ?>">
-                                        <button type="submit" name="details" class="btn btn-secondary">Remove</button>
+                                    <form action=" " method="post">
+                                        <input type="hidden" name="remove_id" value="<?php echo $fetch_faves['f_id'] ?>">
+                                        <button type="submit" name="remove" class="btn btn-secondary">Remove</button>
                                     </form>
                                 </div>
                             </div> <br> <br>
@@ -252,55 +278,19 @@ if(isset($_GET['logout'])){
                 }
                 ?>
             </div>
-        
+
 
             <hr class="featurette-divider">
         </div>
 
-        
+
     </div>
 
 
-    <footer class="text-center text-white" style="background-color: #f1f1f1;">
-        <!-- Grid container -->
-        <div class="container pt-4">
-            <!-- Section: Social media -->
-            <section class="mb-4">
-                <!-- Facebook -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <!-- Twitter -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-twitter"> </i>
-                </a>
-
-                <!-- Google -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-google"></i>
-                </a>
-                <!-- Instagram -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <!-- Github -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-github"></i>
-                </a>
-            </section>
-            <!-- Section: Social media -->
-        </div>
-        <!-- Grid container -->
-
-        <!-- Copyright -->
-        <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2); font-size: 17px; font-weight: 500;">
-            <a class="float-left" href="">back</a>
-            © 2022 Copyright:
-            <a class="text-dark" href="http://github.com/nafiahossain">Nafia Hossain</a>
-            <p class="float-right"><a href="#">Back to top</a></p>
-        </div>
-        <!-- Copyright -->
-    </footer>
+    <!--footer-->
+    <?php
+    include('footer.php');
+    ?>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
