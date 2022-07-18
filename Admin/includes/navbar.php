@@ -24,73 +24,36 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Interface
+        Components
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Components</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="admin.php">Admins</a>
-                <a class="collapse-item" href="admin_gallery.php">Add Gallery</a>
-                <a class="collapse-item" href="admin_shows.php">Add Show</a>
-                <a class="collapse-item" href="admin_artist.php">Add Artist</a>
-                <a class="collapse-item" href="admin_artist.php">Add Artwork</a>
-            </div>
-        </div>
+        <a class="nav-link" href="admin.php">Admins</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="admin_artist.php">Artists</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="admin_users.php">Users</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="admin_artworks.php">Artworks</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="admin_gallery.php">Galleries</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="admin_shows.php">Shows</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="admin_reviews.php">Reviews</a>
     </li>
 
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Utilities:</h6>
-                <a class="collapse-item" href="admin.php">Edit Admins</a>
-                <a class="collapse-item" href="gallery_edit.php">Edit Galleries</a>
-                <a class="collapse-item" href="shows_edit.php">Edit Shows</a>
-                <a class="collapse-item" href="admin_artist.php">Edit Artists</a>
-                <a class="collapse-item" href="admin_artworks.php">Edit Artworks</a>
-            </div>
-        </div>
-    </li>
+    
 
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Addons
-    </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="admin.php">View Admins</a>
-                <a class="collapse-item" href="admin_gallery.php">View Galleries</a>
-                <a class="collapse-item" href="admin_shows.php">View Shows</a>
-                <a class="collapse-item" href="admin_artist.php">View Artists</a>
-                <a class="collapse-item" href="admin_artworks.php">View Artworks</a>
-                <a class="collapse-item" href="admin_users.php">View Users</a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

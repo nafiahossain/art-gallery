@@ -12,7 +12,6 @@ if (isset($_GET['logout'])) {
     session_destroy();
     header("location: login.php");
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +21,7 @@ if (isset($_GET['logout'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artworks | ArtSpace</title>
+    <title>Galleries | ArtSpace</title>
     <link rel="shortcut icon" type="image" href="images/t2.png">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
@@ -141,65 +140,15 @@ if (isset($_GET['logout'])) {
             margin-left: .75rem;
         }
 
+        img {
+            cursor: pointer;
+        }
+
         .card {
             outline: .1rem;
             cursor: pointer;
             border-radius: 5px;
             box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-        }
-
-        /* artwork gallery Css grid  */
-        .contt {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-gap: .3rem;
-            grid-auto-rows: 150px, 350px;
-        }
-
-        .gallery-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .image {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: 50% 50%;
-            transition: .4s linear;
-        }
-
-        .image img:hover {
-            transform: scale(1.4);
-        }
-
-        .text {
-            opacity: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            transition: .4s linear;
-        }
-
-        .gallery-container:hover .text {
-            opacity: 1;
-        }
-
-        .contt div:nth-child(2n+1) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(2n) {
-            grid-column: span 2;
         }
     </style>
 </head>
@@ -249,64 +198,64 @@ if (isset($_GET['logout'])) {
 
         <div>
             <div class="row">
-                <img alt="First" class="d-block w-100" src="images/art2.jpg">
+                <img alt="First" class="d-block w-100" src="images/rrv.jpg">
             </div>
             <hr>
-            <h1 class="animated zoomIn" style="text-align: center;">----- Artworks -----</h1>
+            <h1 class="animated zoomIn" style="text-align: center;">----- Crticisms and Reviews -----</h1>
             <h5 class="animated zoomIn text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae obcaecati placeat et ipsa tempora quis, rerum sit excepturi quam minus ratione consequatur accusantium tenetur a fugiat repudiandae facere voluptate nihil!</h5>
 
             <hr>
 
-            <div class="contt">
-                <?php
-                $query = "SELECT * FROM `artworks`;";
-                $res = mysqli_query($connect, $query);
-                $res_check = mysqli_num_rows($res) > 0;
+            <div class="container marketing">
+                <div class="row featurette mx-auto">
+                    <?php
+                    $query = "SELECT * FROM reviews rv, users us WHERE rv.user_id=us.u_id;";
+                    $res = mysqli_query($connect, $query);
+                    $res_check = mysqli_num_rows($res) > 0;
 
+                    if ($res_check) {
+                        while ($row = mysqli_fetch_array($res)) {
+                    ?>
 
-                if ($res_check) {
-                    while ($row = mysqli_fetch_array($res)) {
-                        $_SESSION['art_id'] = $row['art_id'];
-                ?>
-                        <div class="gallery-container">
-                            <div class="image">
-                                <img src="admin/upload/<?php echo $row['art_img']; ?>" alt="artist">
+                            <div class="col-md-7">
+                                <br>
+                                <strong class="d-inline-block mb-2 text-primary"><?php echo $row['category']; ?></strong>
+                                <h2 class="featurette-heading">Title: <?php echo $row['title']; ?></h2>
+                                <br>
+                                <h6><i><?php echo $row['time']; ?></i> </h6>
+                                <br>
+                                <h5><i>Review</i>: <br> <?php echo $row['review']; ?></h5> <br>
+                                <h6><i>by</i> <?php echo $row['fullname']; ?></h6>
+                                <h6>Contact: <?php echo $row['email']; ?></h6>
                             </div>
-                            <div class="text">
-                                <h4>Ttile: <?php echo $row['art_name']; ?></h4>
-                                <h5><i>by</i> <?php echo $row['art_artist']; ?></h5>
-                                <p><i>medium: <?php echo $row['medium']; ?></i></p>
-                                <a href="artwork_details.php?details_id=<?php echo $row['art_id'] ?>">
-                                    <button type="submit" name="details" class="btn btn-secondary">View details &raquo;</button>
-                                </a>
-                            </div>
+                            <div class="col-md-5">
+                                <br> <br>
+                                <img class="featurette-image img-fluid mx-auto" width="330px" height="400px" src="admin/upload/<?php echo $row['r_img']; ?>" alt="review image"> <br> <br>
+                                <br>
+                            </div> <br> <br>
 
-                        </div>
-                <?php
+
+                    <?php
+                        }
+                    } else {
+                        echo 'No Reviews Found!!!';
                     }
-                } else {
-                    echo 'No artworks Found!!!';
-                }
-                ?>
-                <br>
-            </div> <br> <br> <br>
+                    ?>
+                </div>
 
-            <hr class="featurette-divider">
-
-
+                <hr class="featurette-divider">
+            </div>
         </div>
+    </div>
 
-        <br> <br>
+    <!--footer-->
+    <?php
+    include('footer.php');
+    ?>
 
-
-        <!--footer-->
-        <?php
-        include('footer.php');
-        ?>
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </body>
 
 </html>

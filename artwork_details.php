@@ -36,7 +36,7 @@ if(isset($_POST['add_to_fave'])){
         echo "<script>alert('Artwork Added To Your Collection!')</script>";
         
     }
-    header("location: myprofile.php");
+    
 }
 ?>
 
@@ -47,7 +47,7 @@ if(isset($_POST['add_to_fave'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galleries | ArtSpace</title>
+    <title>Artworks | ArtSpace</title>
     <link rel="shortcut icon" type="image" href="images/t2.png">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">

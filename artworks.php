@@ -256,16 +256,12 @@ include('admin/security.php');
     <div class="container">
 
         <div>
-            <img alt="First slide" class="d-block w-100" src="images/1.jpg">
-            <div class="carousel-caption d-none d-md-block">
-                <h5 class="animated zoomIn" style="animation-delay: .5s">Welcome to the <br>ArtSpace Community!</h5>
-                <p class="animated fadeInLeft" style="animation-delay: 1s">Discover the world of art, Lorem ipsum dolor sit amet, consectetur
-                    adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
-                <p class="animated zoomIn" style="animation-delay: 1s"><a href="#">More Info</a></p>
+            <div class="row">
+                <img alt="First" class="d-block w-100" src="images/art2.jpg">
             </div>
-        </div>
-        <hr>
-        <h1 style="text-align: center;">----- Our Beloved Artists -----</h1>
+            <hr>
+            <h1 class="animated zoomIn" style="text-align: center;">----- Artworks -----</h1>
+            <h5 class="animated zoomIn text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae obcaecati placeat et ipsa tempora quis, rerum sit excepturi quam minus ratione consequatur accusantium tenetur a fugiat repudiandae facere voluptate nihil!</h5>
 
         <hr>
 

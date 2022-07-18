@@ -9,10 +9,8 @@ include('includes/navbar.php');
 
 <div class="container-fluid">
 
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h3><u>Artists</u> </h3>
-        </div>
+    <div class="container d-sm-flex align-items-center justify-content-center mb-4">
+        <h1 class="h3 mb-0 text-gray-800"><u>Artists</u></h1>    
     </div>
 
     <div class="card-body shadow">

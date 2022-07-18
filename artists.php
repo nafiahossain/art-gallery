@@ -174,97 +174,93 @@ include('admin/security.php');
     <div class="container">
 
         <div>
-            <img alt="First slide" class="d-block w-100" src="images/1.jpg">
-            <div class="carousel-caption d-none d-md-block">
-                <h5 class="animated zoomIn" style="animation-delay: .5s">Welcome to the <br>ArtSpace Community!</h5>
-                <p class="animated fadeInLeft" style="animation-delay: 1s">Discover the world of art, Lorem ipsum dolor sit amet, consectetur
-                    adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
-                <p class="animated zoomIn" style="animation-delay: 1s"><a href="#">More Info</a></p>
+            <div class="row">
+                <img alt="First" class="d-block w-100" src="images/rev.jpg">
             </div>
-        </div>
-        <hr>
-        <h1 style="text-align: center;">----- Our Beloved Artists -----</h1>
+            <hr>
+            <h1 class="animated zoomIn" style="text-align: center;">----- Our Beloved Artists -----</h1>
+            <h5 class="animated zoomIn text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae obcaecati placeat et ipsa tempora quis, rerum sit excepturi quam minus ratione consequatur accusantium tenetur a fugiat repudiandae facere voluptate nihil!</h5>
 
-        <hr >
+            <hr>
 
-        <div class="container py-5">
-            <div class="row mt-4">
-                <?php
-                $query = "SELECT * FROM `artists`;";
-                $res = mysqli_query($connect, $query);
-                $res_check = mysqli_num_rows($res) > 0;
+            <div class="container py-5">
+                <div class="row mt-4">
+                    <?php
+                    $query = "SELECT * FROM `artists`;";
+                    $res = mysqli_query($connect, $query);
+                    $res_check = mysqli_num_rows($res) > 0;
 
-                if ($res_check) {
-                    while ($row = mysqli_fetch_array($res)) {
-                ?>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img src="admin/upload/<?php echo $row['ar_img']; ?>" width="px" height="400px" alt="artist">
-                                <div class="card-body text-center">
-                                    <h3><?php echo $row['ar_name']; ?></h3>
-                                    <h6><?php echo $row['ar_bio']; ?></h6>
-                                </div>
-                            </div> <br> <br>
-                        </div>
+                    if ($res_check) {
+                        while ($row = mysqli_fetch_array($res)) {
+                    ?>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <img src="admin/upload/<?php echo $row['ar_img']; ?>" width="px" height="400px" alt="artist">
+                                    <div class="card-body text-center">
+                                        <h3><?php echo $row['ar_name']; ?></h3>
+                                        <h6><?php echo $row['ar_bio']; ?></h6>
+                                    </div>
+                                </div> <br> <br>
+                            </div>
 
 
-                <?php
+                    <?php
+                        }
+                    } else {
+                        echo 'No Shows Found!!!';
                     }
-                } else {
-                    echo 'No Shows Found!!!';
-                }
-                ?>
+                    ?>
+                </div>
+
+
+                <hr class="featurette-divider">
             </div>
-        
 
-            <hr class="featurette-divider">
         </div>
 
-    </div>
+        <footer class="text-center text-white" style="background-color: #f1f1f1;">
+            <!-- Grid container -->
+            <div class="container pt-4">
+                <!-- Section: Social media -->
+                <section class="mb-4">
+                    <!-- Facebook -->
+                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <!-- Twitter -->
+                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+                        <i class="fab fa-twitter"> </i>
+                    </a>
 
-    <footer class="text-center text-white" style="background-color: #f1f1f1;">
-        <!-- Grid container -->
-        <div class="container pt-4">
-            <!-- Section: Social media -->
-            <section class="mb-4">
-                <!-- Facebook -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <!-- Twitter -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-twitter"> </i>
-                </a>
+                    <!-- Google -->
+                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <!-- Instagram -->
+                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <!-- Github -->
+                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </section>
+                <!-- Section: Social media -->
+            </div>
+            <!-- Grid container -->
 
-                <!-- Google -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-google"></i>
-                </a>
-                <!-- Instagram -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <!-- Github -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-github"></i>
-                </a>
-            </section>
-            <!-- Section: Social media -->
-        </div>
-        <!-- Grid container -->
+            <!-- Copyright -->
+            <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2); font-size: 17px; font-weight: 500;">
+                © 2022 Copyright:
+                <a class="text-dark" href="http://github.com/nafiahossain">Nafia Hossain</a>
+                <p class="float-right"><a href="#">Back to top</a></p>
+            </div>
+            <!-- Copyright -->
+        </footer>
 
-        <!-- Copyright -->
-        <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2); font-size: 17px; font-weight: 500;">
-            © 2022 Copyright:
-            <a class="text-dark" href="http://github.com/nafiahossain">Nafia Hossain</a>
-            <p class="float-right"><a href="#">Back to top</a></p>
-        </div>
-        <!-- Copyright -->
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -158,8 +158,7 @@ include('admin/security.php');
             <a class="p-2 text-muted" href="artworks_for_user.php">Artworks</a>
             <a class="p-2 text-muted" href="reviews.php">Reviews</a>
             <a class="p-2 text-muted" href="myprofile.php">My Collections</a>
-            <a class="p-2 text-muted" href="home_for_user.php?logout=<?php echo $user_id; ?>" 
-                onclick="return confirm('are you sure you want to logout?');">Logout</a>
+            <a class="p-2 text-muted" href="home_for_user.php?logout=<?php echo $user_id; ?>" onclick="return confirm('are you sure you want to logout?');">Logout</a>
         </nav>
     </div>
 
@@ -167,19 +166,14 @@ include('admin/security.php');
 
     <div class="container">
 
-        <div>
-            <img alt="First slide" class="d-block w-100" src="images/1.jpg">
-            <div class="carousel-caption d-none d-md-block">
-                <h5 class="animated zoomIn" style="animation-delay: .5s">Welcome to the <br>ArtSpace Community!</h5>
-                <p class="animated fadeInLeft" style="animation-delay: 1s">Discover the world of art, Lorem ipsum dolor sit amet, consectetur
-                    adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
-                <p class="animated zoomIn" style="animation-delay: 1s"><a href="#">More Info</a></p>
-            </div>
+        <div class="row">
+            <img alt="First" class="d-block w-100" src="images/gal.jpg">
         </div>
         <hr>
-        <h1 style="text-align: center;">----- Our Galleries -----</h1>
+        <h1 class="animated zoomIn" style="text-align: center;">----- Galleries -----</h1>
+        <h5 class="animated zoomIn text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae obcaecati placeat et ipsa tempora quis, rerum sit excepturi quam minus ratione consequatur accusantium tenetur a fugiat repudiandae facere voluptate nihil!</h5>
 
-        <hr >
+        <hr>
 
         <div class="container marketing">
             <div class="row featurette">
@@ -196,7 +190,7 @@ include('admin/security.php');
                             <strong class="d-inline-block mb-2 text-primary">Galleries</strong>
                             <h2 class="featurette-heading">Gallery Name: <?php echo $row['g_name']; ?></h2>
                             <br>
-                            <h4> <u>About</u> : <?php echo $row['description']; ?></h4> 
+                            <h4> <u>About</u> : <?php echo $row['description']; ?></h4>
                             <br>
                             <p class="lead"> <u>Address</u> : <?php echo $row['address']; ?></p>
                             <p class="lead"> <u>Opening Hour</u> : <?php echo $row['open']; ?></p>
@@ -205,7 +199,7 @@ include('admin/security.php');
                             <img class="featurette-image img-fluid mx-auto" width="330px" height="600px" src="admin/upload/<?php echo $row['g_image']; ?>" alt="Generic placeholder image"> <br> <br>
                             <br>
                         </div>
-    
+
                 <?php
                     }
                 } else {

@@ -14,6 +14,7 @@ if (isset($_POST["submit"])) {
     if ($resultcheck > 0) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['us_id'] = $row['u_id'];
+        setcookie('username', $username, time()+3600);
         header("location: myprofile.php");
     } else {
         echo "<script>alert('Email or username or password is wrong.')</script>";

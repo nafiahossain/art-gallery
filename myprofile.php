@@ -26,6 +26,12 @@ if (isset($_POST['remove'])) {
         echo "<script>alert('Unable To remove Artwork.')</script>";
     }
 }
+
+if (isset($_COOKIE['username'])) {
+    echo "<script>alert('welcome " . $_COOKIE['username'] . "! This website uses Cookies.')</script>";
+} else {
+    echo "<script>alert('Unable To set cookie.')</script>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -164,6 +170,19 @@ if (isset($_POST['remove'])) {
             border-radius: 5px;
             box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
         }
+
+        .message {
+            position: sticky;
+            top: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: space-between;
+            background-color: var(--red);
+        }
     </style>
 </head>
 
@@ -188,15 +207,14 @@ if (isset($_POST['remove'])) {
     </div>
 
     <div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-between container">
+        <nav class="nav d-flex justify-content-between container">
             <a class="p-2 text-muted" href="artists_for_user.php">Artists</a>
             <a class="p-2 text-muted" href="galleries.php">Galleries</a>
             <a class="p-2 text-muted" href="shows.php">Exhibitions</a>
             <a class="p-2 text-muted" href="artworks_for_user.php">Artworks</a>
             <a class="p-2 text-muted" href="reviews.php">Reviews</a>
             <a class="p-2 text-muted" href="myprofile.php">My Collections</a>
-            <a class="p-2 text-muted" href="home_for_user.php?logout=<?php echo $user_id; ?>" 
-                onclick="return confirm('are you sure you want to logout?');">Logout</a>
+            <a class="p-2 text-muted" href="home_for_user.php?logout=<?php echo $user_id; ?>" onclick="return confirm('are you sure you want to logout?');">Logout</a>
         </nav>
     </div>
 
@@ -218,25 +236,25 @@ if (isset($_POST['remove'])) {
         <hr class="container">
 
         <div class="container py-4">
-            <div class="row align-items-md-stretch">
+            <div class="justify-content-center">
                 <div class="col-md-6">
-                    <div class="h-100 p-5 border rounded-5">
+                    <div class="p-5 border rounded-5">
                         <h4><u>Your Profile:</u></h4>
                         <h5><i>Name: </i> <?php echo $fetch_user['fullname']; ?></h5>
                         <h5><i>User Name: </i> <?php echo $fetch_user['username']; ?></h5>
                         <h5><i>Mailing Address: </i> <?php echo $fetch_user['email']; ?></h5>
                         <h5><i>Contact Number: </i> <?php echo $fetch_user['phone']; ?></h5>
-                        <a href="myprofile.php?logout=<?php echo $user_id; ?>" onclick="return confirm('are you sure you want to logout?');" class="btn btn-dark my-3">Logout</a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="h-100 p-5 border rounded-5">
-                        <h4><u>Your Profile:</u></h4>
-                        <h5><i>Name: </i> <?php echo $fetch_user['fullname']; ?></h5>
-                        <h5><i>User Name: </i> <?php echo $fetch_user['username']; ?></h5>
-                        <h5><i>Mailing Address: </i> <?php echo $fetch_user['email']; ?></h5>
-                        <h5><i>Contact Number: </i> <?php echo $fetch_user['phone']; ?></h5>
-                        <a href="myprofile.php?logout=<?php echo $user_id; ?>" onclick="return confirm('are you sure you want to logout?');" class="btn btn-dark my-3">Logout</a>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <form action="user_edit.php" method="post">
+                                    <input type="hidden" name="edit_id" value="<?php echo $fetch_user['u_id'] ?>">
+                                    <button type="submit" name="edit" class="btn btn-dark my-3">Edit</button>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="myprofile.php?logout=<?php echo $user_id; ?>" onclick="return confirm('are you sure you want to logout?');" class="btn btn-dark my-3">Logout</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
