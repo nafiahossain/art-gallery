@@ -48,6 +48,9 @@
     <li class="nav-item">
         <a class="nav-link" href="admin_reviews.php">Reviews</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="admin_contact.php">Contact Us Messages</a>
+    </li>
 
     
 

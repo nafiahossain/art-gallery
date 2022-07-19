@@ -34,7 +34,7 @@ include('includes/navbar.php');
                 <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                 <span>
                     <a href="index.php?logout=<?php echo $admin_id;?>" 
-                        onclick="return confirm('are you sure you want to logout?');"
+                        onclick="return confirm('Are you sure you want to logout?');"
                         class="btn btn-dark my-3">Logout</a>
                 </span>
             </div>
@@ -225,6 +225,30 @@ include('includes/navbar.php');
                                         $row = mysqli_num_rows($res);
                                         echo '<h2>' .$row. '</h2>';
                                         ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        Total Contact Us Messages</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                        <?php
+                                        $query = "SELECT `c_id` FROM `contact` ORDER BY `c_id`;";
+                                        $res = mysqli_query($connect, $query);
+
+                                        $row = mysqli_num_rows($res);
+                                        echo '<h2>' .$row. '</h2>';
+                                        ?>
+
                                     </div>
                                 </div>
                             </div>

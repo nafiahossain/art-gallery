@@ -65,12 +65,12 @@ if(isset($_POST['delete_admin']))
     
     if($res)
     {
-        $_SESSION['success'] = "Admin Information Deleted From the Database!";
+        $_SESSION['success'] = "Admin member Removed From the Database!";
         header('Location: admin.php');
     }
     else
     {
-        $_SESSION['status'] = "Unable To Delete Admin Information From the Database!!";
+        $_SESSION['status'] = "Unable To Remove Admin Member From the Database!!";
         header('Location: admin.php');
     }
 }
@@ -369,12 +369,12 @@ if(isset($_POST['delete_artwork']))
     
     if($res)
     {
-        $_SESSION['success'] = "Art Information Deleted From the Database!";
+        $_SESSION['success'] = "Artwork Deleted From the Database!";
         header('Location: admin_artworks.php');
     }
     else
     {
-        $_SESSION['status'] = "Unable To Delete Art Information From the Database!!";
+        $_SESSION['status'] = "Unable To Delete Artwork From the Database!!";
         header('Location: admin_artworks.php');
     }
 }
@@ -388,12 +388,12 @@ if(isset($_POST['delete_user']))
     
     if($res)
     {
-        $_SESSION['success'] = "User Information Deleted From the Database!";
+        $_SESSION['success'] = "User Deleted From the Database!";
         header('Location: admin_users.php');
     }
     else
     {
-        $_SESSION['status'] = "Unable To Delete User Information From the Database!!";
+        $_SESSION['status'] = "Unable To Delete User From the Database!!";
         header('Location: admin_users.php');
     }
 }
@@ -417,5 +417,23 @@ if(isset($_POST['delete_review']))
     }
 }
 
+if(isset($_POST['delete_msg']))
+{
+    $dltid = $_POST['delete_id'];
+
+    $query = "DELETE FROM `contact` WHERE `c_id`='$dltid';";
+    $res = mysqli_query($connect, $query);
+    
+    if($res)
+    {
+        $_SESSION['success'] = "Message Deleted From the Database!";
+        header('Location: admin_contact.php');
+    }
+    else
+    {
+        $_SESSION['status'] = "Unable To Delete Message From the Database!!";
+        header('Location: admin_contact.php');
+    }
+}
 
 ?>

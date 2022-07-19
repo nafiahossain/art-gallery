@@ -530,6 +530,16 @@ if(isset($_GET['logout'])){
 
     </div>
 
+    <div class="container p-2 border text-center box-shadow">
+            <?php 
+            if (isset($_COOKIE['username'])) {
+                echo "<h4>Welcome " . $_COOKIE['username'] . "! This website uses Cookies.</h4>";
+            } else {
+                echo "'Unable To set cookie.'";
+            }
+            ?>
+    </div>
+
 
 
 

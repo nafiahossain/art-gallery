@@ -46,10 +46,10 @@ include('includes/navbar.php');
     <br>
 
     <div class="card-body shadow">
-        <h4><u>All Users:</u></h4>
+        <h4><u>All Contact Us Messages:</u></h4>
         <div class="table-responsive">
             <?php
-            $query = "SELECT * FROM `users`;";
+            $query = "SELECT * FROM `contact`;";
             $res = mysqli_query($connect, $query);
 
             if (mysqli_num_rows($res) > 0) {
@@ -58,12 +58,10 @@ include('includes/navbar.php');
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>User ID</th>
-                            <th>Name</th>
-                            <th>User Name</th>
-                            <th>E-mail</th>
-                            <th>Phone</th>
-                            <th>Password</th>
+                            <th>Contact ID</th>
+                            <th>Sender Name</th>
+                            <th>Sender E-mail</th>
+                            <th>Message</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -72,16 +70,14 @@ include('includes/navbar.php');
                         while ($row = mysqli_fetch_assoc($res)) {
                         ?>
                             <tr>
-                                <td> <?php echo $row['u_id'] ?> </td>
-                                <td> <?php echo $row['fullname'] ?> </td>
-                                <td> <?php echo $row['username'] ?> </td>
-                                <td> <?php echo $row['email'] ?> </td>
-                                <td> <?php echo $row['phone'] ?> </td>
-                                <td> <?php echo $row['password'] ?> </td>
+                                <td> <?php echo $row['c_id'] ?> </td>
+                                <td> <?php echo $row['c_name'] ?> </td>
+                                <td> <?php echo $row['c_email'] ?> </td>
+                                <td> <?php echo $row['msg'] ?> </td>
                                 <td>
                                     <form action="add_gallery.php" method="post">
-                                        <input type="hidden" name="delete_id" value="<?php echo $row['u_id'] ?>">
-                                        <button type="submit" name="delete_user" class="btn btn-danger">Delete</button>
+                                        <input type="hidden" name="delete_id" value="<?php echo $row['c_id'] ?>">
+                                        <button type="submit" name="delete_msg" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
                             </tr>

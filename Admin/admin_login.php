@@ -19,7 +19,7 @@ if (isset($_POST["submit"]))
     }
     else
     {
-        echo "<script>alert('Email or username or password is wrong.')</script>";
+        echo "<script>alert('Email or password is wrong.')</script>";
     }
 
 }
@@ -87,9 +87,7 @@ if (isset($_POST["submit"]))
 
                                     </form>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
+                                    <br>
                                     <div class="text-center">
                                         <a class="small" href="admin_register.php">Create an Account!</a>
                                     </div>

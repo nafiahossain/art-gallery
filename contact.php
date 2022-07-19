@@ -1,3 +1,27 @@
+<?php
+include('admin/security.php');
+
+if(isset($_POST['contact']))
+{
+    $cname = $_POST['cname'];
+    $cemail = $_POST['cemail'];
+    $msg = $_POST['msg'];
+
+    $query = "INSERT INTO `contact`(`c_name`, `c_email`, `msg`) VALUES ('$cname','$cemail','$msg');";
+    $res = mysqli_query($connect, $query);
+
+    if($res)
+    {
+        echo "<script>alert('Your message has been sent.')</script>";
+    }
+    else
+    {
+        echo "<script>alert('Unable to send you message.')</script>";
+    }
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,20 +86,20 @@
             background: white;   
         }
 
-        .container {
+        .containerr {
             width: 85%;
             background: #fff;
             border-radius: 6px;
             padding: 30px 60px 30px 40px;
         }
 
-        .container .content {
+        .containerr .content {
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .container .content .left-side {
+        .containerr .content .left-side {
             width: 55%;
             height: 100%;
             display: flex;
@@ -119,7 +143,7 @@
             color: #afafb6;
         }
 
-        .container .content .right-side {
+        .containerr .content .right-side {
             width: 75%;
             margin-left: 75px;
         }
@@ -179,28 +203,28 @@
         }
 
         @media (max-width: 950px) {
-            .container {
+            .containerr {
                 width: 90%;
                 padding: 30px 40px 40px 35px;
             }
 
-            .container .content .right-side {
+            .containerr .content .right-side {
                 width: 75%;
                 margin-left: 55px;
             }
         }
 
         @media (max-width: 820px) {
-            .container {
+            .containerr {
                 margin: 40px 0;
                 height: 100%;
             }
 
-            .container .content {
+            .containerr .content {
                 flex-direction: column-reverse;
             }
 
-            .container .content .left-side {
+            .containerr .content .left-side {
                 width: 100%;
                 flex-direction: row;
                 margin-top: 40px;
@@ -208,18 +232,19 @@
                 flex-wrap: wrap;
             }
 
-            .container .content .left-side::before {
+            .containerr .content .left-side::before {
                 display: none;
             }
 
-            .container .content .right-side {
+            .containerr .content .right-side {
                 width: 100%;
                 margin-left: 0;
             }
         }
     </style>
-    <!-- Fontawesome CDN Link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 
 <body>
@@ -241,50 +266,53 @@
         </div>
 
     </div>
-    <div class="container">
+    <div class="containerr">
         <div class="content">
             <div class="left-side">
                 <div class="address details">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div class="topic">Address</div>
-                    <div class="text-one">Surkhet, NP12</div>
-                    <div class="text-two">Birendranagar 06</div>
+                    <i class="fas fa-envelope"></i>
+                    <div class="topic">Mailing Address</div>
+                    <div class="text-one">ArtSpace@gmail.org</div>
+                    <div class="text-two">ArtSpace_admin@gmail.org</div>
                 </div>
                 <div class="phone details">
                     <i class="fas fa-phone-alt"></i>
-                    <div class="topic">Phone</div>
-                    <div class="text-one">+0098 9893 5647</div>
-                    <div class="text-two">+0096 3434 5678</div>
+                    <div class="topic">Contact Info</div>
+                    <div class="text-one">Main-office: +123 456</div>
+                    <div class="text-two">Sub-office: +789 123</div>
                 </div>
                 <div class="email details">
-                    <i class="fas fa-envelope"></i>
-                    <div class="topic">Email</div>
-                    <div class="text-one">codinglab@gmail.com</div>
-                    <div class="text-two">info.codinglab@gmail.com</div>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="topic">Address</div>
+                    <div class="text-one">The Dhaka Gallery, Dhaka</div>
+                    <div class="text-two">The Soho Gallery, Soho</div>
                 </div>
             </div>
             <div class="right-side">
-                <div class="topic-text">Send us a message</div>
-                <p>If you have any work from me or any types of quries related to my tutorial, you can send me message
-                    from
-                    here. It's my pleasure to help you.</p>
-                <form action="#">
+                <div class="topic-text">Send an E-mail</div>
+                <p>If you have any questions about artworks published on the site, personal data requests, members of the media 
+                    interested in reaching ArtSpace's communications team or general questions and feedback, Reach us by sending
+                    your message.</p>
+                <form method="POST">
                     <div class="input-box">
-                        <input type="text" placeholder="Enter your name">
+                        <input type="text" name="cname" placeholder="Enter your name" required>
                     </div>
                     <div class="input-box">
-                        <input type="text" placeholder="Enter your email">
+                        <input type="email" name="cemail" placeholder="Enter your email" required>
                     </div>
                     <div class="input-box message-box">
-                        <textarea placeholder="Enter your message"></textarea>
+                        <textarea name="msg" placeholder="Enter your message" required></textarea>
                     </div>
-                    <div class="button">
-                        <input type="button" value="Send Now">
+                    <div>
+                        <input type="submit" class="btn btn-dark btn-user" name="contact" value="Send Now">
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </body>
 </html>

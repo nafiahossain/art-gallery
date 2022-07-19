@@ -1,9 +1,23 @@
 <?php
 include('security.php');
 
+$admin_id = $_SESSION['admin_id'];
+
+if(!isset($admin_id)){
+    header("location: admin_login.php");
+}
+
 include('includes/header.php');
 include('includes/navbar.php');
 
+?>
+
+<?php
+    $select_admin = mysqli_query($connect, "SELECT * FROM `admin` WHERE `a_id`= '$admin_id';") or die('query failed');
+
+    if(mysqli_num_rows($select_admin) > 0){
+        $fetch_admin = mysqli_fetch_assoc($select_admin);
+    }
 ?>
 
 

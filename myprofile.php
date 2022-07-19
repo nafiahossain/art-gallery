@@ -27,11 +27,20 @@ if (isset($_POST['remove'])) {
     }
 }
 
-if (isset($_COOKIE['username'])) {
-    echo "<script>alert('welcome " . $_COOKIE['username'] . "! This website uses Cookies.')</script>";
-} else {
-    echo "<script>alert('Unable To set cookie.')</script>";
+if (isset($_POST['remoove'])) {
+    $rmvid = $_POST['remoove_id'];
+
+    $query = "DELETE FROM `reviews` WHERE `r_id`='$rmvid';";
+    $res = mysqli_query($connect, $query);
+
+    if ($res) {
+        echo "<script>alert('Review Removed.')</script>";
+    } else {
+        echo "<script>alert('Unable To remove your review.')</script>";
+    }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -275,10 +284,10 @@ if (isset($_COOKIE['username'])) {
                 ?>
                         <div class="col-md-4">
                             <div class="card">
-                                <img src="admin/upload/<?php echo $fetch_faves['f_img']; ?>" width="px" height="400px" alt="artist">
+                                <img src="admin/upload/<?php echo $fetch_faves['f_img']; ?>" width="px" height="400px" alt="artwork">
                                 <div class="card-body text-center">
                                     <h3><?php echo $fetch_faves['f_name']; ?></h3>
-                                    <h6><?php echo $fetch_faves['f_aname']; ?></h6>
+                                    <h6><i>by</i> <?php echo $fetch_faves['f_aname']; ?></h6>
                                     <h6><?php echo $fetch_faves['f_medium']; ?></h6>
                                     <h6><?php echo $fetch_faves['f_price']; ?></h6>
                                     <form action=" " method="post">
@@ -286,7 +295,7 @@ if (isset($_COOKIE['username'])) {
                                         <button type="submit" name="remove" class="btn btn-secondary">Remove</button>
                                     </form>
                                 </div>
-                            </div> <br> <br>
+                            </div> 
                         </div>
 
 
@@ -301,6 +310,54 @@ if (isset($_COOKIE['username'])) {
 
             <hr class="featurette-divider">
         </div>
+
+        <h4 class="text-center">My Reviews</h4>
+        <div class="container py-5">
+            <div class="row mt-4">
+                <?php
+                $select_faves = mysqli_query($connect, "SELECT * FROM `reviews` WHERE `user_id` = '$user_id';") or die('query failed');
+
+                if (mysqli_num_rows($select_faves) > 0) {
+                    while ($fetch_faves = mysqli_fetch_assoc($select_faves)) {
+                ?>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="admin/upload/<?php echo $fetch_faves['r_img']; ?>" width="px" height="400px" alt="review">
+                                <div class="card-body text-center">
+                                    <h3><?php echo $fetch_faves['title']; ?></h3>
+                                    <h6><?php echo $fetch_faves['review']; ?></h6>
+                                    <h6><i>Review on</i> <?php echo $fetch_faves['category']; ?></h6>
+                                    <form action=" " method="post">
+                                        <input type="hidden" name="remoove_id" value="<?php echo $fetch_faves['r_id'] ?>">
+                                        <button type="submit" name="remoove" class="btn btn-secondary">Remove</button>
+                                    </form>
+                                </div>
+                            </div> <br> 
+                        </div>
+
+
+                <?php
+                    }
+                } else {
+                    echo 'No Reviews Found!!!';
+                }
+                ?>
+            </div>
+
+
+            <hr class="container">
+        </div>
+
+        <div class="container p-2 border text-center box-shadow">
+            <?php 
+            if (isset($_COOKIE['username'])) {
+                echo "<h4>Welcome " . $_COOKIE['username'] . "! This website uses Cookies.</h4>";
+            } else {
+                echo "'Unable To set cookie.'";
+            }
+            ?>
+        </div>
+        <hr class="featurette-divider">
 
 
     </div>
