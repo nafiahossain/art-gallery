@@ -130,28 +130,25 @@ include('admin/security.php');
             <img class="logo" src="images/logoo.png" alt="ArtSpace">
         </div>
 
-        <!-- Left-aligned links (default) -->
-        <a style="margin-left: 350px;" href="#news">News</a>
-        <a href="#contact">Contact</a>
+        <a style="margin-left: 350px;" href="about.html">About</a>
+        <a href="home.html">Home</a>
 
-        <!-- Right-aligned links -->
         <div class="topnav-right">
-            <a href="#search">Search</a>
-            <a style="margin-right: 350px;" href="#about">About</a>
+            <a href="contact.php">Contact</a>
+            <a style="margin-right: 350px;" href="register.php">Join</a>
         </div>
 
     </div>
 
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between container">
-            <a class="p-2 text-muted" href="artists_for_user.php">Artists</a>
+            <a class="p-2 text-muted" href="artists.php">Artists</a>
             <a class="p-2 text-muted" href="galleries.php">Galleries</a>
             <a class="p-2 text-muted" href="shows.php">Exhibitions</a>
-            <a class="p-2 text-muted" href="artworks_for_user.php">Artworks</a>
+            <a class="p-2 text-muted" href="artworks.php">Artworks</a>
             <a class="p-2 text-muted" href="reviews.php">Reviews</a>
             <a class="p-2 text-muted" href="myprofile.php">My Collections</a>
-            <a class="p-2 text-muted" href="home_for_user.php?logout=<?php echo $user_id; ?>" 
-                onclick="return confirm('are you sure you want to logout?');">Logout</a>
+            <a class="p-2 text-muted" href="home_for_user.php?logout=<?php echo $user_id; ?>" onclick="return confirm('are you sure you want to logout?');">Logout</a>
         </nav>
     </div>
 
@@ -167,86 +164,52 @@ include('admin/security.php');
             <h1 class="animated zoomIn" style="text-align: center;">----- Visit Exhibitions -----</h1>
             <h5 class="animated zoomIn text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae obcaecati placeat et ipsa tempora quis, rerum sit excepturi quam minus ratione consequatur accusantium tenetur a fugiat repudiandae facere voluptate nihil!</h5>
 
-        <hr>
+            <hr>
 
-        <div class="container py-5">
-            <div class="row mt-4">
-                <?php
-                $query = "SELECT * FROM shows;";
-                $res = mysqli_query($connect, $query);
-                $res_check = mysqli_num_rows($res) > 0;
+            <div class="container py-5">
+                <div class="row mt-4">
+                    <?php
+                    $query = "SELECT * FROM shows;";
+                    $res = mysqli_query($connect, $query);
+                    $res_check = mysqli_num_rows($res) > 0;
 
-                if ($res_check) {
-                    while ($row = mysqli_fetch_array($res)) {
-                ?>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <img src="admin/upload/<?php echo $row['image']; ?>" width="245px" height="230px" alt="shows">
-                                <div class="card-body text-center">
-                                    <h3><?php echo $row['s_name']; ?></h3>
-                                    <h6><?php echo $row['time']; ?></h6>
-                                    <h4><?php echo $row['place']; ?></h4>
-                                    <p><?php echo $row['info']; ?></p>
-                                </div>
-                            </div> <br> <br>
-                        </div>
+                    if ($res_check) {
+                        while ($row = mysqli_fetch_array($res)) {
+                    ?>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <img src="admin/upload/<?php echo $row['image']; ?>" width="245px" height="230px" alt="shows">
+                                    <div class="card-body text-center">
+                                        <h3><?php echo $row['s_name']; ?></h3>
+                                        <h6><?php echo $row['time']; ?></h6>
+                                        <h4><?php echo $row['place']; ?></h4>
+                                        <p><?php echo $row['info']; ?></p>
+                                    </div>
+                                </div> <br> <br>
+                            </div>
 
 
-                <?php
+                    <?php
+                        }
+                    } else {
+                        echo 'No Shows Found!!!';
                     }
-                } else {
-                    echo 'No Shows Found!!!';
-                }
-                ?>
+                    ?>
+                </div>
             </div>
         </div>
     </div>
 
 
 
-    <footer class="text-center text-white" style="background-color: #f1f1f1;">
-        <!-- Grid container -->
-        <div class="container pt-4">
-            <!-- Section: Social media -->
-            <section class="mb-4">
-                <!-- Facebook -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <!-- Twitter -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-twitter"> </i>
-                </a>
+        <!--footer-->
+        <?php
+        include('footer.php');
+        ?>
 
-                <!-- Google -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-google"></i>
-                </a>
-                <!-- Instagram -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <!-- Github -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-github"></i>
-                </a>
-            </section>
-            <!-- Section: Social media -->
-        </div>
-        <!-- Grid container -->
-
-        <!-- Copyright -->
-        <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2); font-size: 17px; font-weight: 500;">
-            © 2022 Copyright:
-            <a class="text-dark" href="http://github.com/nafiahossain">Nafia Hossain</a>
-            <p class="float-right"><a href="#">Back to top</a></p>
-        </div>
-        <!-- Copyright -->
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </body>
 
 </html>

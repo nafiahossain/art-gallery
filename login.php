@@ -15,7 +15,7 @@ if (isset($_POST["submit"])) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['us_id'] = $row['u_id'];
         setcookie('username', $username, time()+3600);
-        header("location: myprofile.php");
+        header("location: home_for_user.php");
     } else {
         echo "<script>alert('Email or username or password is wrong.')</script>";
     }
@@ -86,11 +86,12 @@ if (isset($_POST["submit"])) {
 
                                     </form>
                                     <hr>
+                                    <br>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small" href="register.php">Create an Account!</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="admin_register.php">Create an Account!</a>
+                                        <a class="small" href="home.html">Go Back to Homepage</a>
                                     </div>
                                 </div>
                             </div>

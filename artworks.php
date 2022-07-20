@@ -9,7 +9,7 @@ include('admin/security.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galleries | ArtSpace</title>
+    <title>Artworks | ArtSpace</title>
     <link rel="shortcut icon" type="image" href="images/t2.png">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
@@ -181,40 +181,12 @@ include('admin/security.php');
             opacity: 1;
         }
 
-        .contt div:nth-child(1) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(2) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(3) {
+        .contt div:nth-child(2n+1) {
             grid-column: span 2;
         }
 
-        .contt div:nth-child(4) {
+        .contt div:nth-child(2n) {
             grid-column: span 2;
-        }
-
-        .contt div:nth-child(5) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(6) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(8) {
-            grid-column: span 2;
-        }
-
-        .contt div:nth-child(9) {
-            grid-column: span 3;
-        }
-
-        .contt div:nth-child(10) {
-            grid-column: span 3;
         }
     </style>
 </head>
@@ -227,27 +199,25 @@ include('admin/security.php');
             <img class="logo" src="images/logoo.png" alt="ArtSpace">
         </div>
 
-        <!-- Left-aligned links (default) -->
-        <a style="margin-left: 350px;" href="#news">News</a>
-        <a href="#contact">Contact</a>
+        <a style="margin-left: 350px;" href="about.html">About</a>
+        <a href="home.html">Home</a>
 
-        <!-- Right-aligned links -->
         <div class="topnav-right">
-            <a href="#search">Search</a>
-            <a style="margin-right: 350px;" href="#about">About</a>
+            <a href="contact.php">Contact</a>
+            <a style="margin-right: 350px;" href="register.php">Join</a>
         </div>
 
     </div>
 
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between container">
-            <a class="p-2 text-muted" href="#">Artists</a>
-            <a class="p-2 text-muted" href="#">Galleries</a>
-            <a class="p-2 text-muted" href="#">Exhibitions</a>
-            <a class="p-2 text-muted" href="#">Museums</a>
-            <a class="p-2 text-muted" href="#">Culture</a>
-            <a class="p-2 text-muted" href="#">blogs</a>
-            <a class="p-2 text-muted" href="#">Search</a>
+            <a class="p-2 text-muted" href="artists.php">Artists</a>
+            <a class="p-2 text-muted" href="galleries.php">Galleries</a>
+            <a class="p-2 text-muted" href="shows.php">Exhibitions</a>
+            <a class="p-2 text-muted" href="artworks.php">Artworks</a>
+            <a class="p-2 text-muted" href="reviews.php">Reviews</a>
+            <a class="p-2 text-muted" href="myprofile.php">Collection</a>
+            <a class="p-2 text-muted" href="login.php">Login</a>
         </nav>
     </div>
 
@@ -261,86 +231,54 @@ include('admin/security.php');
             </div>
             <hr>
             <h1 class="animated zoomIn" style="text-align: center;">----- Artworks -----</h1>
-            <h5 class="animated zoomIn text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae obcaecati placeat et ipsa tempora quis, rerum sit excepturi quam minus ratione consequatur accusantium tenetur a fugiat repudiandae facere voluptate nihil!</h5>
+            <h5 class="animated zoomIn text-center">ArtSpace is proud to present vibrant works of art from our renowned contemporary artists
+                and their collections.</h5>
 
-        <hr>
+            <hr>
 
-        <div class="contt">
-            <?php
-            $query = "SELECT * FROM `artworks`;";
-            $res = mysqli_query($connect, $query);
-            $res_check = mysqli_num_rows($res) > 0;
+            <div class="contt">
+                <?php
+                $query = "SELECT * FROM `artworks`;";
+                $res = mysqli_query($connect, $query);
+                $res_check = mysqli_num_rows($res) > 0;
 
-            if ($res_check) {
-                while ($row = mysqli_fetch_array($res)) {
-            ?>
-                    <div class="gallery-container">
-                        <div class="image">
-                            <img src="admin/upload/<?php echo $row['art_img']; ?>" alt="artist">
+                if ($res_check) {
+                    while ($row = mysqli_fetch_array($res)) {
+                ?>
+                        <div class="gallery-container">
+                            <div class="image">
+                                <img src="admin/upload/<?php echo $row['art_img']; ?>" alt="artist">
+                            </div>
+                            <div class="text">
+                                <h4>Ttile: <?php echo $row['art_name']; ?></h4>
+                                <h5><i>by</i> <?php echo $row['art_artist']; ?></h5>
+                                <p><i>medium: <?php echo $row['medium']; ?></i></p>
+                            </div>
+
                         </div>
-                        <div class="text">
-                            <h4>Ttile: <?php echo $row['art_name']; ?></h4>
-                            <h5><i>by</i> <?php echo $row['art_artist']; ?></h5>
-                            <p><i>medium: <?php echo $row['medium']; ?></i></p>
-                        </div>
-
-                    </div>
-            <?php
+                <?php
+                    }
+                } else {
+                    echo 'No Shows Found!!!';
                 }
-            } else {
-                echo 'No Shows Found!!!';
-            }
-            ?>
-            <br>
-        </div> <br> <br> <br>
+                ?>
+                <br>
+            </div> <br> <br> <br>
 
-        <hr class="featurette-divider">
+            <hr class="featurette-divider">
 
+
+        </div>
 
     </div>
 
     <br> <br>
 
 
-    <footer class="text-center text-white" style="background-color: #f1f1f1;">
-        <!-- Grid container -->
-        <div class="container pt-4">
-            <!-- Section: Social media -->
-            <section class="mb-4">
-                <!-- Facebook -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <!-- Twitter -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-twitter"> </i>
-                </a>
-
-                <!-- Google -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-google"></i>
-                </a>
-                <!-- Instagram -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <!-- Github -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                    <i class="fab fa-github"></i>
-                </a>
-            </section>
-            <!-- Section: Social media -->
-        </div>
-        <!-- Grid container -->
-
-        <!-- Copyright -->
-        <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2); font-size: 17px; font-weight: 500;">
-            © 2022 Copyright:
-            <a class="text-dark" href="http://github.com/nafiahossain">Nafia Hossain</a>
-            <p class="float-right"><a href="#">Back to top</a></p>
-        </div>
-        <!-- Copyright -->
-    </footer>
+    <!--footer-->
+    <?php
+        include('footer.php');
+        ?>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>

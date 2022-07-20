@@ -211,16 +211,13 @@ if(isset($_POST['add_to_fave'])){
             <img class="logo" src="images/logoo.png" alt="ArtSpace">
         </div>
 
-        <!-- Left-aligned links (default) -->
-        <a style="margin-left: 350px;" href="#news">News</a>
-        <a href="#contact">Contact</a>
+        <a style="margin-left: 350px;" href="about.html">About</a>
+        <a href="home_for_user.php">Home</a>
 
-        <!-- Right-aligned links -->
         <div class="topnav-right">
-            <a href="#search">Search</a>
-            <a style="margin-right: 350px;" href="#about">About</a>
+            <a href="contact.php">Contact</a>
+            <a style="margin-right: 350px;" href="myprofile.php">My Profile</a>
         </div>
-
     </div>
 
     <div class="nav-scroller py-1 mb-2">
@@ -281,7 +278,7 @@ if(isset($_POST['add_to_fave'])){
 
             <h2 class="text-center">Hello <?php echo $fetch_user['fullname']; ?>!</h2>
         
-            <input type="submit" class="container btn btn-secondary" name="add_to_fave" value="add to favourite">
+            <input type="submit" class="container btn btn-secondary" name="add_to_fave" value="Add to Your Collection">
         </form>
         
         <br> <br>

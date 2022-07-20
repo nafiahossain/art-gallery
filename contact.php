@@ -255,14 +255,12 @@ if(isset($_POST['contact']))
             <img class="logo" src="images/logoo.png" alt="ArtSpace">
         </div>
 
-        <!-- Left-aligned links (default) -->
-        <a style="margin-left: 350px;" href="#news">News</a>
-        <a href="#contact">Contact</a>
+        <a style="margin-left: 350px;" href="about.html">About</a>
+        <a href="home.html">Home</a>
 
-        <!-- Right-aligned links -->
         <div class="topnav-right">
-            <a href="#search">Search</a>
-            <a style="margin-right: 350px;" href="#about">About</a>
+            <a href="contact.php">Contact</a>
+            <a style="margin-right: 350px;" href="register.php">Join</a>
         </div>
 
     </div>

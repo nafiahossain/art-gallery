@@ -261,13 +261,11 @@ if(isset($_GET['logout'])){
             <img class="logo" src="images/logoo.png" alt="ArtSpace">
         </div>
 
-        <!-- Left-aligned links (default) -->
-        <a style="margin-left: 350px;" href="#news">News</a>
-        <a href="#contact">About</a>
+        <a style="margin-left: 350px;" href="about.html">About</a>
+        <a href="navboot.html">Landing</a>
 
-        <!-- Right-aligned links -->
         <div class="topnav-right">
-            <a href="#search">Contact</a>
+            <a href="contact.php">Contact</a>
             <a style="margin-right: 350px;" href="myprofile.php">My Profile</a>
         </div>
     </div>
@@ -297,32 +295,38 @@ if(isset($_GET['logout'])){
                 <img class="first-slide" src="images/home1.jpg" alt="First slide">
                 <div class="container">
                     <div class="carousel-caption text-left">
-                        <h1>Example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                            gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                        <h1>Welcome!</h1>
+                        <p class="lead">We believe that art is an inseparable part of life, as well as a universal language that
+                            bridges cultures and fosters human connections. ArtSpace is a global network of high-end contemporary art galleries
+                            that endeavors to embody and promote contemporary optimism through a mix of passion and bravery.</p>
+                        <p><a class="btn btn-md btn-secondary" href="artists_for_user.php" role="button">Explore More!</a></p>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
                 <img class="second-slide" src="images/home3.jpg" alt="Second slide">
                 <div class="container">
-                    <div class="carousel-caption">
-                        <h1>Another example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                            gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                    <div class="carousel-caption text-dark">
+                        <h1>Get Inspired!</h1>
+                        <p class="lead"> ArtSpace is proud to present vibrant works of art from our renowned contemporary artists
+                            and their collections.
+                            Works by artists getting increasing attention from our collectors via searches, page views, bids,
+                            and inquiries. Discover works
+                            fresh from the studios of up-and-coming artists with recent shows at tastemaking galleries and
+                            booths at top fairs.</p>
+                        <p><a class="btn btn-md btn-secondary" href="artworks.php" role="button">Learn more</a></p>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="third-slide" src="images/home4.jpg" alt="Third slide">
+                <img class="third-slide" src="images/hm6.jpg" alt="Third slide">
                 <div class="container">
                     <div class="carousel-caption text-right">
-                        <h1>One more for good measure.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                            gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                        <h1>Discover Galleries Around!</h1>
+                        <p class="lead"> We curate a diverse array of exhibitions and artworks by internationally renowned contemporary artists who 
+                            have been handpicked for their creativity, color and innovation. We believe that art is an inseparable part of life, as well as a universal language that
+                            bridges cultures and fosters human connections.</p>
+                        <p><a class="btn btn-md btn-secondary" href="galleries.php" role="button">Browse Gallery</a></p>
                     </div>
                 </div>
             </div>
@@ -351,7 +355,7 @@ if(isset($_GET['logout'])){
                         <p class="card-text mb-auto">The main purpose of this community is to spread art and creating a
                             safer
                             environment for artists all over the world.</p>
-                        <a href="#">Continue reading...</a>
+                        <a href="about.html">Read More...</a>
                     </div>
                     <img class="card-img-right flex-auto d-none d-md-block" src="images/card1.jpg" alt="Card image cap">
                 </div>
@@ -359,29 +363,29 @@ if(isset($_GET['logout'])){
             <div class="col-md-6">
                 <div class="card flex-md-row mb-4 box-shadow h-md-250">
                     <div class="card-body d-flex flex-column align-items-start">
-                        <strong class="d-inline-block mb-2 text-success">Design</strong>
+                        <strong class="d-inline-block mb-2 text-success">Reviews</strong>
                         <h3 class="mb-0">
-                            <a class="text-dark" href="#">Post title</a>
+                            <a class="text-dark" href="#">Post Your Reviews</a>
                         </h3>
-                        <div class="mb-1 text-muted">Nov 11</div>
-                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural
-                            lead-in to
-                            additional content.</p>
-                        <a href="#">Continue reading</a>
+                        <div class="mb-1 text-muted">Jul 12</div>
+                        <p class="card-text mb-auto">ArtSpace gives you an access to post reviews about our artists, artworks,
+                            galleries, and shows. Join today! Be kind and tell us your opinion!
+                        </p>
+                        <a href="reviews.php">Read More...</a>
                     </div>
-                    <img class="card-img-right flex-auto d-none d-md-block" src="images/card1.jpg" alt="Card image cap">
+                    <img class="card-img-right flex-auto d-none d-md-block" src="images/shows.jpg" alt="Card image cap">
                 </div>
             </div>
         </div>
 
         <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
-            <div class="col-md-6 px-0">
+            <div class="col-md-11 px-0 mx-auto">
                 <img src="images/third.jpg" alt="">
-                <h1 class="display-4 font-italic">Join today to explore the world of art</h1>
-                <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and
-                    efficiently
-                    about what's most interesting in this post's contents.</p>
-                <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Join Now!</a></p>
+                <h1 class="display-4 font-italic text-center">Explore the world of art with us!</h1>
+                <p class="lead text-center">We believe that art is an inseparable part of life, as well as a universal language that
+                    bridges cultures and fosters human connections. ArtSpace is a global network of high-end contemporary art galleries
+                    that endeavors to embody and promote contemporary optimism through a mix of passion and bravery.</p>
+                <p class="lead mb-0 text-center"><a href="" class="text-white font-weight-bold">Welcome!</a></p>
             </div>
         </div>
 
@@ -401,7 +405,7 @@ if(isset($_GET['logout'])){
                     array of exhibitions
                     and artworks by internationally renowned contemporary artists who have been handpicked for their
                     creativity, color and innovation.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                <p><a class="btn btn-secondary" href="galleries.php" role="button">View details &raquo;</a></p>
             </div>
             <div class="col-md-5">
                 <img class="featurette-image img-fluid mx-auto" src="images/gallery.jpg"
@@ -429,7 +433,7 @@ if(isset($_GET['logout'])){
                     from new and noteworthy female-identifying
                     artists, hand-picked by ArtSpace's Curatorial team.
                 </p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                <p><a class="btn btn-secondary" href="artists_for_user.php" role="button">View details &raquo;</a></p>
             </div>
             <div class="col-md-5 order-md-1">
                 <img class="featurette-image img-fluid mx-auto" src="images/artist.jpg" alt="Generic placeholder image">
@@ -441,7 +445,7 @@ if(isset($_GET['logout'])){
         <div class="row featurette">
             <div class="col-md-7">
                 <strong class="d-inline-block mb-2 text-primary">Discover Museums</strong>
-                <h2 class="featurette-heading">Discover Museums, <span class="text-muted">Around you.</span></h2>
+                <h2 class="featurette-heading">Get Inspired, <span class="text-muted">Everyday.</span></h2>
                 <p class="lead">A museum is a building or institution that cares for and displays a collection of
                     artifacts
                     and other objects of artistic, cultural, historical, or scientific importance. Many public museums
@@ -455,7 +459,7 @@ if(isset($_GET['logout'])){
                     serving researchers and specialists, to catering to the general public. The goal of serving
                     researchers is not only
                     scientific, but intended to serve the general public.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                <p><a class="btn btn-secondary" href="artworks_for_user.php" role="button">View details &raquo;</a></p>
             </div>
             <div class="col-md-5">
                 <img class="featurette-image img-fluid mx-auto" src="images/Museum.png" alt="Generic placeholder image">
@@ -481,7 +485,7 @@ if(isset($_GET['logout'])){
                     exhibition can be found. Since every culture, country, and community has a unique history of art,
                     exhibitions displaying
                     modern and traditional art can be found everywhere, in even the most remote locations. </p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                <p><a class="btn btn-secondary" href="shows.php" role="button">View details &raquo;</a></p>
             </div>
             <div class="col-md-5 order-md-1">
                 <img class="featurette-image img-fluid mx-auto" src="images/shows.jpg" alt="Generic placeholder image">
@@ -498,35 +502,33 @@ if(isset($_GET['logout'])){
                 <img class="rounded-circle" src="images/r1.jpg" alt="Generic placeholder image" width="140"
                     height="140">
                 <h2>Artist's Review</h2>
-                <p class="text-muted">Van Gogh</p>
+                <p class="text-muted">John Doe</p>
                 <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh
                     ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
                     Praesent commodo cursus magna.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
                 <img class="rounded-circle" src="images/r2.jpg" alt="Generic placeholder image" width="140"
                     height="140">
-                <h2>Heading</h2>
-                <p class="text-muted">Van Gogh</p>
+                <h2>User's Review</h2>
+                <p class="text-muted">Joyce</p>
                 <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
                     Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo,
                     tortor mauris condimentum nibh.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
                 <img class="rounded-circle" src="images/r3.jpg" alt="Generic placeholder image" width="140"
                     height="140">
-                <h2>Heading</h2>
-                <p class="text-muted">Van Gogh</p>
+                <h2>Artist's Review</h2>
+                <p class="text-muted">Alexis</p>
                 <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id
                     ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris
                     condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
 
-        <hr class="featurette-divider">
+        <hr>
 
     </div>
 
@@ -540,56 +542,13 @@ if(isset($_GET['logout'])){
             ?>
     </div>
 
+    <hr class="container">
 
 
-
-
-    <footer class="text-center text-white" style="background-color: #f1f1f1;">
-        <!-- Grid container -->
-
-        <div class="container pt-4">
-            <!-- Section: Social media -->
-            <section class="mb-4">
-                <!-- Facebook -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
-                    data-mdb-ripple-color="dark">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <!-- Twitter -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
-                    data-mdb-ripple-color="dark">
-                    <i class="fab fa-twitter"> </i>
-                </a>
-
-                <!-- Google -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
-                    data-mdb-ripple-color="dark">
-                    <i class="fab fa-google"></i>
-                </a>
-                <!-- Instagram -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
-                    data-mdb-ripple-color="dark">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <!-- Github -->
-                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
-                    data-mdb-ripple-color="dark">
-                    <i class="fab fa-github"></i>
-                </a>
-            </section>
-            <!-- Section: Social media -->
-        </div>
-        <!-- Grid container -->
-
-        <!-- Copyright -->
-        <div class="text-center text-dark p-3"
-            style="background-color: rgba(0, 0, 0, 0.2); font-size: 17px; font-weight: 500;">
-            © 2022 Copyright:
-            <a class="text-dark" href="http://github.com/nafiahossain">Nafia Hossain</a>
-            <p class="float-right"><a href="#">Back to top</a></p>
-        </div>
-        <!-- Copyright -->
-    </footer>
+    <!--footer-->
+    <?php
+        include('footer.php');
+    ?>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>

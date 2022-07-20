@@ -9,7 +9,7 @@ include('admin/security.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galleries | ArtSpace</title>
+    <title>Artists | ArtSpace</title>
     <link rel="shortcut icon" type="image" href="images/t2.png">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
@@ -145,27 +145,25 @@ include('admin/security.php');
             <img class="logo" src="images/logoo.png" alt="ArtSpace">
         </div>
 
-        <!-- Left-aligned links (default) -->
-        <a style="margin-left: 350px;" href="#news">News</a>
-        <a href="#contact">Contact</a>
+        <a style="margin-left: 350px;" href="about.html">About</a>
+        <a href="home.html">Home</a>
 
-        <!-- Right-aligned links -->
         <div class="topnav-right">
-            <a href="#search">Search</a>
-            <a style="margin-right: 350px;" href="#about">About</a>
+            <a href="contact.php">Contact</a>
+            <a style="margin-right: 350px;" href="register.php">Join</a>
         </div>
 
     </div>
 
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between container">
-            <a class="p-2 text-muted" href="#">Artists</a>
-            <a class="p-2 text-muted" href="#">Galleries</a>
-            <a class="p-2 text-muted" href="#">Exhibitions</a>
-            <a class="p-2 text-muted" href="#">Museums</a>
-            <a class="p-2 text-muted" href="#">Culture</a>
-            <a class="p-2 text-muted" href="#">blogs</a>
-            <a class="p-2 text-muted" href="#">Search</a>
+            <a class="p-2 text-muted" href="artists.php">Artists</a>
+            <a class="p-2 text-muted" href="galleries.php">Galleries</a>
+            <a class="p-2 text-muted" href="shows.php">Exhibitions</a>
+            <a class="p-2 text-muted" href="artworks.php">Artworks</a>
+            <a class="p-2 text-muted" href="reviews.php">Reviews</a>
+            <a class="p-2 text-muted" href="myprofile.php">Collection</a>
+            <a class="p-2 text-muted" href="login.php">Login</a>
         </nav>
     </div>
 
@@ -217,50 +215,16 @@ include('admin/security.php');
             </div>
 
         </div>
+    </div>
 
-        <footer class="text-center text-white" style="background-color: #f1f1f1;">
-            <!-- Grid container -->
-            <div class="container pt-4">
-                <!-- Section: Social media -->
-                <section class="mb-4">
-                    <!-- Facebook -->
-                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <!-- Twitter -->
-                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                        <i class="fab fa-twitter"> </i>
-                    </a>
+    <!--footer-->
+    <?php
+    include('footer.php');
+    ?>
 
-                    <!-- Google -->
-                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                        <i class="fab fa-google"></i>
-                    </a>
-                    <!-- Instagram -->
-                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <!-- Github -->
-                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </section>
-                <!-- Section: Social media -->
-            </div>
-            <!-- Grid container -->
-
-            <!-- Copyright -->
-            <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2); font-size: 17px; font-weight: 500;">
-                © 2022 Copyright:
-                <a class="text-dark" href="http://github.com/nafiahossain">Nafia Hossain</a>
-                <p class="float-right"><a href="#">Back to top</a></p>
-            </div>
-            <!-- Copyright -->
-        </footer>
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </body>
 
 </html>

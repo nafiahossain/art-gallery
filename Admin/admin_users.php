@@ -63,7 +63,6 @@ include('includes/navbar.php');
                             <th>User Name</th>
                             <th>E-mail</th>
                             <th>Phone</th>
-                            <th>Password</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -77,7 +76,6 @@ include('includes/navbar.php');
                                 <td> <?php echo $row['username'] ?> </td>
                                 <td> <?php echo $row['email'] ?> </td>
                                 <td> <?php echo $row['phone'] ?> </td>
-                                <td> <?php echo $row['password'] ?> </td>
                                 <td>
                                     <form action="add_gallery.php" method="post">
                                         <input type="hidden" name="delete_id" value="<?php echo $row['u_id'] ?>">

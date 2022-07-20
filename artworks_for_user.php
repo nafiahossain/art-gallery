@@ -219,14 +219,12 @@ if (isset($_GET['logout'])) {
             <img class="logo" src="images/logoo.png" alt="ArtSpace">
         </div>
 
-        <!-- Left-aligned links (default) -->
-        <a style="margin-left: 350px;" href="#news">News</a>
-        <a href="#contact">Contact</a>
+        <a style="margin-left: 350px;" href="about.html">About</a>
+        <a href="home_for_user.php">Home</a>
 
-        <!-- Right-aligned links -->
         <div class="topnav-right">
-            <a href="#search">Search</a>
-            <a style="margin-right: 350px;" href="#about">About</a>
+            <a href="contact.php">Contact</a>
+            <a style="margin-right: 350px;" href="myprofile.php">My Profile</a>
         </div>
 
     </div>
@@ -253,7 +251,8 @@ if (isset($_GET['logout'])) {
             </div>
             <hr>
             <h1 class="animated zoomIn" style="text-align: center;">----- Artworks -----</h1>
-            <h5 class="animated zoomIn text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae obcaecati placeat et ipsa tempora quis, rerum sit excepturi quam minus ratione consequatur accusantium tenetur a fugiat repudiandae facere voluptate nihil!</h5>
+            <h5 class="animated zoomIn text-center">ArtSpace is proud to present vibrant works of art from our renowned contemporary artists
+                    and their collections.</h5>
 
             <hr>
 

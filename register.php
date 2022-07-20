@@ -114,12 +114,12 @@ if (isset($_POST['submit'])) {
                                 <input type="submit" name="submit" class="btn btn-dark btn-user btn-block" value="Create Account">
 
                             </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div>
+                            <hr> 
                             <div class="text-center">
                                 <a class="small" href="login.php">Already have an account? Login!</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="home.html">Go Back to Homepage</a>
                             </div>
                         </div>
                     </div>

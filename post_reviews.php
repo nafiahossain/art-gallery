@@ -195,14 +195,12 @@ if(isset($_POST['submit']))
             <img class="logo" src="images/logoo.png" alt="ArtSpace">
         </div>
 
-        <!-- Left-aligned links (default) -->
-        <a style="margin-left: 350px;" href="#news">News</a>
-        <a href="#contact">Contact</a>
+        <a style="margin-left: 350px;" href="about.html">About</a>
+        <a href="home_for_user.php">Home</a>
 
-        <!-- Right-aligned links -->
         <div class="topnav-right">
-            <a href="#search">Search</a>
-            <a style="margin-right: 350px;" href="#about">About</a>
+            <a href="contact.php">Contact</a>
+            <a style="margin-right: 350px;" href="myprofile.php">My Profile</a>
         </div>
 
     </div>
@@ -274,7 +272,7 @@ if(isset($_POST['submit']))
                         <div class="text-center">
                             <img src="images/rev2.jpg" width="890px" height="250px" alt=""> <br>
                             <br>
-                            <a class="medium" href="login.php">Discover more Reviews!</a>
+                            <a class="medium" href="reviews.php">Discover more Reviews!</a>
                         </div>
                     </div>
                 </div>
