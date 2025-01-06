@@ -1,4 +1,4 @@
 # ArtSpace
-## Undergrad Web Development Project using HTML, CSS< Bootstrap, Javascripts, PHP, and MySQL.
+## Undergrad Web Development Project
 An interactive art gallery website developed using JavaScript, PHP, MySQL, Bootstrap, HTML, and CSS, designed to connect artists and art enthusiasts. Artists can sign up for an account, upload their artworks, and showcase them in the gallery. Users can register to explore the collection, provide critiques or comments on individual pieces, and curate their own favorites list. The platform offers a user-friendly interface, making it easy for both artists and users to engage with the content, fostering a creative and interactive community.
  The platform also includes a separate admin panel for managing users, ensuring efficient user management and content moderation. The website offers a user-friendly interface, fostering a creative and interactive community.
